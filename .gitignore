@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# private project materials (client briefs, reverse-engineering reference)
+*.docx
+/reference/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vermilion Gate
 
-## Getting Started
+A static-first Next.js rebuild of the Vermilion Gate website, designed to replace a hard-to-maintain legacy CMS.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router
+- TypeScript
+- Native CSS with shared design tokens and semantic section classes
+- Typed content modules instead of CMS-bound page editing
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
+pnpm lint
+pnpm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/app`: routes, metadata, sitemap, robots, Open Graph image
+- `src/components`: shared header, footer, page hero, section nav, inquiry form
+- `src/lib/site-content.ts`: central content model for navigation, homepage sections, founder positioning, illustrative themes, insights links, and contact details
+- `src/lib/metadata.ts`: shared page metadata builder
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+Most website copy lives in `src/lib/site-content.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+That file controls:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- primary navigation
+- homepage hero, focus blocks, and positioning statements
+- about page narrative and founder section
+- what we do and illustrative themes content
+- insights links
+- office details and FAQ content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This keeps future updates reviewable and avoids pushing routine text changes through component files.
 
-## Deploy on Vercel
+## Current information architecture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/`: homepage with refreshed positioning
+- `/about-us/overview`: founder-led platform and Loo Cheng Guan profile
+- `/our-business/overview`: what we do
+- `/our-business/illustrative-themes`: theme-led replacement for legacy transaction pages
+- `/insights`: external links to LinkedIn and Substack
+- `/contact-us/our-office`: contact page
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Legacy CMS routes are redirected in `next.config.ts` so old links do not break.
+
+## Why this rebuild is easier to maintain
+
+- The site is content-driven rather than template-driven.
+- Shared layout primitives replace one-off CMS blocks.
+- SEO concerns are handled in code: metadata, sitemap, robots, Open Graph image, and branded 404.
+- The contact page works without server-side form infrastructure by opening a prefilled email draft locally.
+
+## Deployment
+
+The project is ready for Vercel or any Next.js-compatible host.
+
+Recommended environment:
+
+1. Connect the repository to Vercel.
+2. Set the production domain.
+3. Review office details and legal copy in `src/lib/site-content.ts`.
+4. Run `pnpm build` in CI before every deployment.
