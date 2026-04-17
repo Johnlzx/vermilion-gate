@@ -21,13 +21,13 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [closedItem, setClosedItem] = useState<string | null>(null);
+  const [openItemHref, setOpenItemHref] = useState<string | null>(null);
   const isHome = pathname === "/";
   const showFilledHeader = !isHome || isScrolled || menuOpen;
 
-  function handleNavLinkClick(itemHref: string) {
+  function handleNavLinkClick() {
     setMenuOpen(false);
-    setClosedItem(itemHref);
+    setOpenItemHref(null);
   }
 
   useEffect(() => {
@@ -91,16 +91,33 @@ export function SiteHeader() {
             <div
               key={item.href}
               className={`site-nav__item${item.children ? " has-children" : ""}${
-                closedItem === item.href ? " is-force-closed" : ""
+                openItemHref === item.href ? " is-open" : ""
               }`}
-              onMouseLeave={() => setClosedItem((current) => (current === item.href ? null : current))}
+              onMouseEnter={() => {
+                if (item.children) {
+                  setOpenItemHref(item.href);
+                }
+              }}
+              onMouseLeave={() =>
+                setOpenItemHref((current) => (current === item.href ? null : current))
+              }
+              onFocus={(event) => {
+                if (item.children && event.currentTarget.contains(event.target)) {
+                  setOpenItemHref(item.href);
+                }
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  setOpenItemHref((current) => (current === item.href ? null : current));
+                }
+              }}
             >
               <Link
                 className={`site-nav__link${
                   isActive(pathname, item.match) ? " is-active" : ""
                 }`}
                 href={item.href}
-                onClick={() => handleNavLinkClick(item.href)}
+                onClick={handleNavLinkClick}
               >
                 {item.label}
               </Link>
@@ -112,7 +129,7 @@ export function SiteHeader() {
                       key={child.href}
                       className="site-nav__dropdown-link"
                       href={child.href}
-                      onClick={() => handleNavLinkClick(item.href)}
+                      onClick={handleNavLinkClick}
                     >
                       {child.label}
                     </Link>

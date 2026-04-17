@@ -267,17 +267,10 @@ textarea {
   transform: translateX(-50%) rotate(45deg);
 }
 
-.site-nav__item.has-children:hover .site-nav__dropdown,
-.site-nav__item.has-children:focus-within .site-nav__dropdown {
+.site-nav__item.has-children.is-open .site-nav__dropdown {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
-}
-
-.site-nav__item.has-children.is-force-closed .site-nav__dropdown {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-50%) translateY(10px);
 }
 
 .site-nav__dropdown-link {
