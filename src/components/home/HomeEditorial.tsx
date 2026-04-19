@@ -123,7 +123,7 @@ export function HomeEditorial() {
           <header className="ed-section__head">
             <h2 className="ed-display">{homeFounderLed.heading}</h2>
           </header>
-          <div className="ed-section__body ed-prose ed-prose--wide">
+          <div className="ed-section__body ed-prose ed-prose--statement">
             <p>{homeFounderLed.copy}</p>
           </div>
         </div>
@@ -170,7 +170,7 @@ export function HomeEditorial() {
               </h2>
             </header>
             <div className="ed-section__body">
-              <p className="ed-prose ed-prose--wide">{homeWhatWeAreNot.copy}</p>
+              <p className="ed-prose ed-prose--statement">{homeWhatWeAreNot.copy}</p>
             </div>
           </div>
           <ol className="ed-index ed-index--plain ed-boundary__list">
