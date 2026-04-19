@@ -70,7 +70,7 @@ export default function ContactPage() {
             <div className="contact-map">
               <Image
                 src="/assets/map.jpg"
-                alt="Map of Robinson Point in Singapore"
+                alt="Map of Prudential Tower in Singapore"
                 width={1097}
                 height={679}
               />

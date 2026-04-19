@@ -49,7 +49,7 @@ const organizationSchema = {
     "@type": "PostalAddress",
     streetAddress: `${company.addressLines[0]}, ${company.addressLines[1]}`,
     addressLocality: "Singapore",
-    postalCode: "068911",
+    postalCode: "049712",
     addressCountry: "SG",
   },
 };

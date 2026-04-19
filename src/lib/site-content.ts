@@ -48,11 +48,11 @@ export const company = {
   shortDescription:
     "Singapore-based founder-led advisory platform for strategic transactions, capital alignment, capital allocation strategy, and special situations.",
   email: "info@vermiliongate.com",
-  phone: "+65 6750 4641",
+  phone: "+65 9799 1028",
   addressLines: [
-    "39 Robinson Road",
-    "#11-01 Robinson Point",
-    "Singapore 068911",
+    "30 Cecil Road",
+    "#28-08 Prudential Tower",
+    "Singapore 049712",
   ],
   linkedIn: "https://sg.linkedin.com/company/vermilion-gate",
   founderLinkedIn: "https://www.linkedin.com/in/cgloo",
