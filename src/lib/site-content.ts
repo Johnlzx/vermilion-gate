@@ -169,7 +169,9 @@ export const homeFocusBlocks: FocusBlock[] = [
 export const homeWhatThisMeans = {
   heading: "What This Means",
   copy: [
-    "We focus on situations where structure matters more than story. The work is situation-defined rather than sector-defined, and the first need is often clarity rather than process.",
+    "We focus on situations where structure matters more than story.",
+    "The work is situation-defined, not sector-defined.",
+    "The first need is usually clarity, not process.",
     "We only take on mandates where judgment, structural fit, and capital discipline materially shape the outcome.",
   ],
 };
@@ -183,8 +185,17 @@ export const homeInsights = {
   heading: "Insights",
   copy: "The website sets the lane. Our ongoing thinking sits in our posts.",
   links: [
-    { label: "Follow on LinkedIn", href: company.linkedIn },
-    { label: "Read on Substack", href: company.substack },
+    {
+      label: "Follow on LinkedIn",
+      href: company.linkedIn,
+      description: "Short-form field notes and real-time signals.",
+    },
+    {
+      label: "Read on Substack",
+      href: company.substack,
+      description:
+        "Longer-form essays on capital, structure, and special situations.",
+    },
   ],
 };
 

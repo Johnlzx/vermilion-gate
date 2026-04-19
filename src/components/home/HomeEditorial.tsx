@@ -67,7 +67,7 @@ export function HomeEditorial() {
           <header className="ed-section__head">
             <h2 className="ed-display">{homeWhatThisMeans.heading}</h2>
           </header>
-          <div className="ed-section__body ed-prose">
+          <div className="ed-section__body ed-note">
             {homeWhatThisMeans.copy.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -118,52 +118,47 @@ export function HomeEditorial() {
         </div>
       </section>
 
-      <div className="ed-tower">
-        <div className="ed-tower__inner container">
-          <div className="ed-tower__content">
-            <section className="ed-section ed-section--muted ed-tower__section">
-              <header className="ed-section__head">
-                <h2 className="ed-display">{homeFounderLed.heading}</h2>
-              </header>
-              <div className="ed-section__body ed-prose ed-prose--wide">
-                <p>{homeFounderLed.copy}</p>
-              </div>
-            </section>
-
-            <section className="ed-section ed-section--muted ed-tower__section">
-              <header className="ed-section__head">
-                <p className="ed-kicker">{homeInsights.heading}</p>
-              </header>
-              <div className="ed-section__body">
-                <p className="ed-prose ed-prose--wide">{homeInsights.copy}</p>
-                <div className="ed-actions">
-                  {homeInsights.links.map((link) => (
-                    <a
-                      key={link.href}
-                      className="ed-link ed-link--outline"
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </section>
+      <section className="ed-section ed-section--muted">
+        <div className="container">
+          <header className="ed-section__head">
+            <h2 className="ed-display">{homeFounderLed.heading}</h2>
+          </header>
+          <div className="ed-section__body ed-prose ed-prose--wide">
+            <p>{homeFounderLed.copy}</p>
           </div>
-          <aside className="ed-tower__media" aria-hidden="true">
-            <div className="ed-tower__figure">
-              <Image
-                src="/assets/imagery/curved-metal-vertical-lines.jpg"
-                alt=""
-                fill
-                sizes="(max-width: 880px) 100vw, 32vw"
-              />
-            </div>
-          </aside>
         </div>
-      </div>
+      </section>
+
+      <section className="ed-section ed-section--muted">
+        <div className="container">
+          <header className="ed-section__head">
+            <p className="ed-kicker">{homeInsights.heading}</p>
+          </header>
+          <div className="ed-section__body">
+            <p className="ed-prose ed-prose--wide">{homeInsights.copy}</p>
+            <ul className="ed-channels">
+              {homeInsights.links.map((link) => (
+                <li key={link.href} className="ed-channels__item">
+                  <a
+                    className="ed-channels__link"
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.label}
+                    <span className="ed-channels__arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+                  <p className="ed-channels__description">
+                    {link.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <section className="ed-section ed-section--muted ed-section--boundary ed-boundary">
         <div className="container ed-boundary__grid">
