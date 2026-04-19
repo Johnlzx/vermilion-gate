@@ -14,7 +14,7 @@ export default function InsightsPage() {
     <main id="main-content">
       <PageHero
         title="Insights"
-        backgroundImage="/assets/news-room-banner.jpg"
+        backgroundImage="/assets/imagery/news-room-banner-reflective-glass.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },
           { label: "Insights" },
@@ -25,7 +25,7 @@ export default function InsightsPage() {
         <div className="container">
           <div className="section-heading">
             <p className="section-kicker">LinkedIn and Substack</p>
-            <h2 className="classic-title classic-title--narrow">
+            <h2 className="classic-title classic-title--statement">
               Current thinking lives in short-form field notes and long-form
               essays rather than a conventional in-site newsroom.
             </h2>

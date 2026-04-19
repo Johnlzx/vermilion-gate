@@ -17,7 +17,7 @@ export default function ContactPage() {
     <main id="main-content">
       <PageHero
         title="Our Office"
-        backgroundImage="/assets/contact-us-banner.jpg"
+        backgroundImage="/assets/imagery/contact-us-banner-horizontal-louvers.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },
           { href: "/contact-us/our-office", label: "Contact Us" },

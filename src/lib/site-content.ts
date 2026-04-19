@@ -14,15 +14,9 @@ export type SidebarLink = {
 };
 
 export type FocusBlock = {
+  href?: string;
   title: string;
   summary: string;
-};
-
-export type FeatureCard = {
-  title: string;
-  summary: string;
-  href: string;
-  imageSrc: string;
 };
 
 export type DetailBlock = {
@@ -149,78 +143,75 @@ export const themesSidebar: SidebarLink[] = [
 
 export const homeFocusBlocks: FocusBlock[] = [
   {
-    title: "Strategic transactions",
-    summary:
-      "Mandates where structure matters as much as price, and where ownership, control, or strategic fit needs judgment before process begins.",
-  },
-  {
-    title: "Capital alignment",
-    summary:
-      "Situations involving trapped, misapplied, or mismatched capital across shareholders, assets, or listed wrappers.",
-  },
-  {
-    title: "Capital allocation strategy",
-    summary:
-      "Principal-side perspective on where capital should move, where it should wait, and what must be true before it is committed.",
-  },
-  {
-    title: "Special situations and strategic realignment",
-    summary:
-      "Assignments where something is stuck and requires a structural reset in ownership, balance sheet, or strategic direction.",
-  },
-];
-
-export const homeFeatureCards: FeatureCard[] = [
-  {
     title: "Strategic Transactions",
-    summary:
-      "We advise on strategic transactions where structure, counterparties, and ownership logic matter as much as headline price.",
     href: "/our-business/overview#strategic-transactions",
-    imageSrc: "/assets/feature-card-01.jpg",
+    summary: "Transactions where structure matters as much as price.",
   },
   {
     title: "Capital Alignment",
-    summary:
-      "We work where capital is trapped, misapplied, or no longer aligned with the strategic reality of the business.",
     href: "/our-business/overview#capital-alignment",
-    imageSrc: "/assets/feature-card-02.jpg",
+    summary:
+      "Situations where capital is trapped, misapplied, or no longer aligned with business reality.",
   },
   {
     title: "Capital Allocation Strategy",
-    summary:
-      "We bring an allocator’s lens to where capital should move, where it should wait, and what should be restructured first.",
     href: "/our-business/overview#capital-allocation-strategy",
-    imageSrc: "/assets/feature-card-03.jpg",
+    summary:
+      "A principal-side perspective on where capital should move, where it should wait, and what should be reset first.",
   },
   {
-    title: "Special Situations and Strategic Realignment",
-    summary:
-      "We focus on situations that are stuck and require a structural reset before capital or process can add useful momentum.",
+    title: "Special Situations",
     href: "/our-business/overview#special-situations-and-strategic-realignment",
-    imageSrc: "/assets/feature-card-04.jpg",
+    summary: "Situations where progress is blocked by structural tension.",
   },
 ];
+
+export const homeWhatThisMeans = {
+  heading: "What This Means",
+  copy: [
+    "We focus on situations where structure matters more than story. The work is situation-defined rather than sector-defined, and the first need is often clarity rather than process.",
+    "We only take on mandates where judgment, structural fit, and capital discipline materially shape the outcome.",
+  ],
+};
+
+export const homeFounderLed = {
+  heading: "Founder-led",
+  copy: "Vermilion Gate is led by Cheng-Guan Loo and built for situations where something important no longer fits — in capital structure, ownership, market positioning, or strategic direction.",
+};
+
+export const homeInsights = {
+  heading: "Insights",
+  copy: "The website sets the lane. Our ongoing thinking sits in our posts.",
+  links: [
+    { label: "Follow on LinkedIn", href: company.linkedIn },
+    { label: "Read on Substack", href: company.substack },
+  ],
+};
+
+export const homeWhatWeAreNot = {
+  heading: "What We Are Not",
+  title: "The platform is deliberately narrower than a generic advisory offering.",
+  copy: "The work is not built around broad coverage, process volume, or default corporate-finance positioning. It is designed for specific situations that require structural judgment first.",
+};
 
 export const howWeWork: FocusBlock[] = [
   {
     title: "Selective advisory mandates",
-    summary:
-      "The platform is mandate-led and intentionally selective. Fit matters more than volume.",
+    summary: "Fit matters more than volume.",
   },
   {
     title: "Judgment before process",
-    summary:
-      "The first task is usually not launching a formal process, but understanding what is actually misaligned.",
+    summary: "Understand what is actually misaligned first.",
   },
   {
     title: "Structure before capital",
     summary:
-      "More capital is not always the answer. Often the structure, wrapper, or ownership logic needs to change first.",
+      "The wrapper, ownership, or balance-sheet logic often needs to change first.",
   },
   {
     title: "Clarity before action",
     summary:
-      "The goal is to create a cleaner decision before counterparties, documents, or capital commitments start to compound confusion.",
+      "A cleaner decision before counterparties, documents, or capital compound the confusion.",
   },
 ];
 

@@ -20,39 +20,35 @@ function isActive(pathname: string, matchers: string[]) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [openItemHref, setOpenItemHref] = useState<string | null>(null);
-  const isHome = pathname === "/";
-  const showFilledHeader = !isHome || isScrolled || menuOpen;
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 4);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   function handleNavLinkClick() {
     setMenuOpen(false);
     setOpenItemHref(null);
   }
 
-  useEffect(() => {
-    if (!isHome) {
-      return;
-    }
-
-    function handleScroll() {
-      setIsScrolled(window.scrollY > 24);
-    }
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isHome]);
+  const headerClass = [
+    "site-header",
+    menuOpen ? "site-header--open" : "",
+    scrolled ? "site-header--scrolled" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <header
-      className={`site-header${isHome ? " site-header--home" : ""}${
-        showFilledHeader ? " site-header--scrolled" : ""
-      }${menuOpen ? " site-header--open" : ""}`}
-    >
+    <header className={headerClass}>
       <div className="container site-header__inner">
         <Link
           className="brand-logo"
@@ -65,7 +61,7 @@ export function SiteHeader() {
             alt="Vermilion Gate"
             width={728}
             height={111}
-            priority={isHome}
+            priority={pathname === "/"}
           />
         </Link>
 

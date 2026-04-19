@@ -14,7 +14,7 @@ export default function IllustrativeThemesPage() {
     <main id="main-content">
       <PageHero
         title="Illustrative Themes"
-        backgroundImage="/assets/our-business-banner.jpg"
+        backgroundImage="/assets/imagery/our-business-banner-curved-metallic-facade.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },
           { href: "/our-business/overview", label: "Our Business" },

@@ -22,7 +22,7 @@ export default function AboutOverviewPage() {
     <main id="main-content">
       <PageHero
         title="Overview"
-        backgroundImage="/assets/overview-banner.jpg"
+        backgroundImage="/assets/imagery/overview-banner-glass-grid.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },
           { href: "/about-us/overview", label: "About Us" },
