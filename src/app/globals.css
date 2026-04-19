@@ -408,6 +408,8 @@ textarea {
 
 .spotlight-image img,
 .contact-map img {
+  width: 100%;
+  height: auto;
   overflow: hidden;
   border-radius: 1.2rem;
 }
