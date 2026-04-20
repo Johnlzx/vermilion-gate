@@ -5,7 +5,6 @@ import { SiteHeader } from "@/components/site-header";
 import { company } from "@/lib/site-content";
 import { siteUrl } from "@/lib/site-url";
 
-
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -87,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en-SG" data-scroll-behavior="smooth">
       <body>
         <a className="skip-link" href="#main-content">
           Skip to content
