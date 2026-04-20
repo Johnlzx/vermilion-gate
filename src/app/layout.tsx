@@ -28,6 +28,16 @@ export const metadata: Metadata = {
   creator: company.name,
   publisher: company.name,
   category: "Business",
+  openGraph: {
+    siteName: company.name,
+    locale: "en_SG",
+    type: "website",
+    images: ["/og/site.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og/site.png"],
+  },
 };
 
 export const viewport: Viewport = {
