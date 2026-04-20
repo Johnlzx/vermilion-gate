@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -46,23 +45,40 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const organizationSchema = {
+const organizationId = `${siteUrl}#organization`;
+const websiteId = `${siteUrl}#website`;
+
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: company.name,
-  legalName: company.legalName,
-  url: siteUrl,
-  email: company.email,
-  telephone: company.phone,
-  description: company.description,
-  sameAs: [company.linkedIn],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: `${company.addressLines[0]}, ${company.addressLines[1]}`,
-    addressLocality: "Singapore",
-    postalCode: "049712",
-    addressCountry: "SG",
-  },
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": organizationId,
+      name: company.name,
+      legalName: company.legalName,
+      url: siteUrl,
+      email: company.email,
+      telephone: company.phone,
+      description: company.description,
+      sameAs: [company.linkedIn],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: `${company.addressLines[0]}, ${company.addressLines[1]}`,
+        addressLocality: "Singapore",
+        postalCode: "049712",
+        addressCountry: "SG",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: siteUrl,
+      name: company.name,
+      description: company.description,
+      inLanguage: "en-SG",
+      publisher: { "@id": organizationId },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -76,13 +92,10 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
-        <Script
-          id="organization-schema"
+        <script
           type="application/ld+json"
-          strategy="beforeInteractive"
-        >
-          {JSON.stringify(organizationSchema)}
-        </Script>
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <div className="site-shell">
           <SiteHeader />
           {children}

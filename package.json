@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "og:site": "tsx scripts/generate-og.ts"
+    "og:site": "tsx scripts/generate-og.ts",
+    "sitemap:lock": "tsx scripts/sitemap-lock.ts"
   },
   "dependencies": {
     "next": "16.2.4",
