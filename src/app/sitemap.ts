@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { siteUrl } from "@/lib/site-url";
+
 const routes = [
   "",
   "/about-us/overview",
@@ -15,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   return routes.map((route) => ({
-    url: `https://www.vermiliongate.com${route}`,
+    url: `${siteUrl}${route}`,
     lastModified,
   }));
 }

@@ -4,12 +4,13 @@ import Script from "next/script";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { company } from "@/lib/site-content";
+import { siteUrl } from "@/lib/site-url";
 
 
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.vermiliongate.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Vermilion Gate",
     template: "%s | Vermilion Gate",
@@ -50,7 +51,7 @@ const organizationSchema = {
   "@type": "ProfessionalService",
   name: company.name,
   legalName: company.legalName,
-  url: "https://www.vermiliongate.com",
+  url: siteUrl,
   email: company.email,
   telephone: company.phone,
   description: company.description,

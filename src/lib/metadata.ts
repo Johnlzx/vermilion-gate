@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import { company } from "./site-content";
+import { siteUrl } from "./site-url";
 
-const siteUrl = "https://www.vermiliongate.com";
 const siteOgImage = "/og/site.png";
 
 type MetadataInput = {
