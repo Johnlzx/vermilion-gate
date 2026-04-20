@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { company } from "./site-content";
 
 const siteUrl = "https://www.vermiliongate.com";
+const siteOgImage = "/og/site.png";
 
 type MetadataInput = {
   title: string;
@@ -30,11 +31,13 @@ export function buildMetadata({
       siteName: company.name,
       locale: "en_SG",
       type: "website",
+      images: [siteOgImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [siteOgImage],
     },
   };
 }
