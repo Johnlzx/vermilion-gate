@@ -9,6 +9,8 @@ import { siteUrl } from "@/lib/site-url";
 type LockEntry = { hash: string; lastmod: string };
 type Lock = Record<string, LockEntry>;
 
+export const dynamic = "force-static";
+
 const LOCK_PATH = path.join(process.cwd(), "src/lib/sitemap.lock.json");
 
 function loadLock(): Lock {

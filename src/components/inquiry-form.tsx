@@ -3,31 +3,26 @@
 import { useState } from "react";
 
 import { company } from "@/lib/site-content";
-
-type FormState = {
-  name: string;
-  email: string;
-  contactNumber: string;
-  subject: string;
-  message: string;
-};
-
-type FormErrors = Partial<Record<keyof FormState, string>>;
-
-const initialState: FormState = {
-  name: "",
-  email: "",
-  contactNumber: "",
-  subject: "",
-  message: "",
-};
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import {
+  resetTurnstile,
+  TurnstileWidget,
+  turnstileEnabled,
+} from "@/components/turnstile-widget";
+import {
+  initialInquiryFormState,
+  type InquiryFormErrors,
+  type InquiryFormState,
+  normalizeInquiryForm,
+  validateInquiryForm,
+} from "@/lib/inquiry-form";
 
 export function InquiryForm() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "ready">("idle");
+  const [form, setForm] = useState<InquiryFormState>(initialInquiryFormState);
+  const [errors, setErrors] = useState<InquiryFormErrors>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -38,58 +33,83 @@ export function InquiryForm() {
       ...current,
       [name]: value,
     }));
+
+    if (submitted) {
+      setSubmitted(false);
+    }
+
+    if (errors[name as keyof InquiryFormErrors]) {
+      setErrors((current) => {
+        const nextErrors = { ...current };
+        delete nextErrors[name as keyof InquiryFormErrors];
+        return nextErrors;
+      });
+    }
+
+    if (submitError) {
+      setSubmitError("");
+    }
   }
 
-  function validate(nextForm: FormState): FormErrors {
-    const nextErrors: FormErrors = {};
-
-    if (!nextForm.name.trim()) {
-      nextErrors.name = "Please share your name.";
-    }
-
-    if (!nextForm.email.trim()) {
-      nextErrors.email = "Please share your email address.";
-    } else if (!emailPattern.test(nextForm.email)) {
-      nextErrors.email = "Please enter a valid email address.";
-    }
-
-    if (!nextForm.subject.trim()) {
-      nextErrors.subject = "Please add a short subject line.";
-    }
-
-    if (!nextForm.message.trim()) {
-      nextErrors.message = "Please add a short description of your brief.";
-    }
-
-    return nextErrors;
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validate(form);
+    const normalizedForm = normalizeInquiryForm(form);
+    const nextErrors = validateInquiryForm(normalizedForm);
 
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
-      setStatus("idle");
+      setSubmitted(false);
       return;
     }
 
-    const subject = encodeURIComponent(
-      `${form.subject} — website inquiry from ${form.name}`,
-    );
-    const body = encodeURIComponent(
-      [
-        `Name: ${form.name}`,
-        `Email Address: ${form.email}`,
-        `Contact Number: ${form.contactNumber || "Not provided"}`,
-        "",
-        form.message,
-      ].join("\n"),
-    );
+    if (turnstileEnabled && !turnstileToken) {
+      setSubmitted(false);
+      setSubmitError("Please complete the verification challenge.");
+      return;
+    }
 
-    setStatus("ready");
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...normalizedForm,
+          turnstileToken,
+        }),
+      });
+      const payload = (await response.json().catch(() => ({}))) as {
+        success?: boolean;
+        error?: string;
+      };
+
+      if (response.ok && payload.success) {
+        setForm(initialInquiryFormState);
+        setErrors({});
+        setTurnstileToken("");
+        setSubmitted(true);
+        return;
+      }
+
+      setSubmitted(false);
+      setSubmitError(
+        payload.error || "Something went wrong. Please try again shortly.",
+      );
+    } catch {
+      setSubmitted(false);
+      setSubmitError("Network error. Please try again shortly.");
+    } finally {
+      setSubmitting(false);
+      if (turnstileEnabled) {
+        resetTurnstile();
+        setTurnstileToken("");
+      }
+    }
   }
 
   return (
@@ -176,17 +196,21 @@ export function InquiryForm() {
       </label>
 
       <div className="form-actions">
-        <button className="submit-button" type="submit">
-          Submit Form
+        <button className="submit-button" type="submit" disabled={submitting}>
+          {submitting ? "Sending..." : "Submit Form"}
         </button>
         <p className="field-hint">
-          This opens your default email client with the inquiry prefilled.
+          We review every inquiry directly and reply as soon as possible.
         </p>
       </div>
 
-      {status === "ready" ? (
+      <TurnstileWidget onToken={setTurnstileToken} />
+
+      {submitError ? <p className="field-error">{submitError}</p> : null}
+
+      {submitted ? (
         <p className="form-success">
-          Your email client should open now. If it does not, write directly to{" "}
+          Your inquiry has been sent. If you need to follow up, write directly to{" "}
           <a href={`mailto:${company.email}`}>{company.email}</a>.
         </p>
       ) : null}

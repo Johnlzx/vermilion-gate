@@ -1,0 +1,76 @@
+name: Deploy to Testing
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify main branch
+        run: |
+          if [ "${{ github.ref_name }}" != "main" ]; then
+            echo "::error::Testing can only be deployed from main branch"
+            exit 1
+          fi
+
+  deploy:
+    needs: check-branch
+    runs-on: ubuntu-latest
+    environment:
+      name: testing
+      url: https://vermilion-gate-test.pages.dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        run: |
+          OUTPUT=$(pnpm exec wrangler pages deploy out --project-name=vermilion-gate-test --branch=main --commit-hash=${{ github.sha }} 2>&1)
+          echo "$OUTPUT"
+          DEPLOY_URL=$(echo "$OUTPUT" | grep -oE 'https://[a-z0-9-]+\.vermilion-gate-test\.pages\.dev' | head -1)
+          echo "deploy_url=${DEPLOY_URL}" >> $GITHUB_OUTPUT
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Job summary
+        if: always()
+        run: |
+          echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Project** | vermilion-gate-test |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Environment** | testing |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Triggered by** | ${{ github.actor }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ steps.deploy.outcome }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Links" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Pages: https://vermilion-gate-test.pages.dev" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.deploy.outputs.deploy_url }}" ]; then
+            echo "- Deploy preview: ${{ steps.deploy.outputs.deploy_url }}" >> $GITHUB_STEP_SUMMARY
+          fi

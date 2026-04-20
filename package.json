@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy": "pnpm build && wrangler pages deploy out --project-name=vermilion-gate",
     "start": "next start",
     "lint": "eslint",
     "og:site": "tsx scripts/generate-og.ts",
@@ -22,6 +23,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tsx": "^4.20.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.83.0"
   }
 }
