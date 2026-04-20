@@ -51,8 +51,8 @@ export default function AboutOverviewPage() {
                   <Image
                     src="/assets/loo-cheng-guan.jpg"
                     alt="Loo Cheng Guan"
-                    width={533}
-                    height={600}
+                    width={1122}
+                    height={1402}
                   />
                 </div>
                 <div className="spotlight-copy">
