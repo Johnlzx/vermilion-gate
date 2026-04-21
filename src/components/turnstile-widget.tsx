@@ -47,7 +47,7 @@ export function getTurnstileRenderOptions(
   return {
     sitekey: siteKey,
     size: "flexible" as const,
-    appearance: "always" as const,
+    appearance: "interaction-only" as const,
     callback: onToken,
   };
 }

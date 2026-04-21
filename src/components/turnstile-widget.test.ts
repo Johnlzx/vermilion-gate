@@ -4,7 +4,7 @@ import { describe, it } from "node:test";
 import { getTurnstileRenderOptions } from "./turnstile-widget";
 
 describe("getTurnstileRenderOptions", () => {
-  it("renders an always-visible flexible widget", () => {
+  it("renders an interaction-only flexible widget", () => {
     const onTokenCalls: string[] = [];
     const options = getTurnstileRenderOptions("test-site-key", (token) => {
       onTokenCalls.push(token);
@@ -12,7 +12,7 @@ describe("getTurnstileRenderOptions", () => {
 
     assert.equal(options.sitekey, "test-site-key");
     assert.equal(options.size, "flexible");
-    assert.equal(options.appearance, "always");
+    assert.equal(options.appearance, "interaction-only");
 
     options.callback("turnstile-token");
     assert.deepEqual(onTokenCalls, ["turnstile-token"]);
