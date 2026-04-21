@@ -16,6 +16,25 @@ import {
   validateInquiryForm,
 } from "@/lib/inquiry-form";
 
+interface InquiryFormSubmitStateOptions {
+  submitting: boolean;
+  turnstileEnabled: boolean;
+  turnstileToken: string;
+}
+
+export function getInquiryFormSubmitState({
+  submitting,
+  turnstileEnabled,
+  turnstileToken,
+}: InquiryFormSubmitStateOptions) {
+  const waitingForVerification = turnstileEnabled && !turnstileToken;
+
+  return {
+    disabled: submitting || waitingForVerification,
+    waitingForVerification,
+  };
+}
+
 export function InquiryForm() {
   const [form, setForm] = useState<InquiryFormState>(initialInquiryFormState);
   const [errors, setErrors] = useState<InquiryFormErrors>({});
@@ -23,6 +42,11 @@ export function InquiryForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
+  const submitState = getInquiryFormSubmitState({
+    submitting,
+    turnstileEnabled,
+    turnstileToken,
+  });
 
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -196,11 +220,17 @@ export function InquiryForm() {
       </label>
 
       <div className="form-actions">
-        <button className="submit-button" type="submit" disabled={submitting}>
+        <button
+          className="submit-button"
+          type="submit"
+          disabled={submitState.disabled}
+        >
           {submitting ? "Sending..." : "Submit Form"}
         </button>
         <p className="field-hint">
-          We review every inquiry directly and reply as soon as possible.
+          {submitState.waitingForVerification
+            ? "Complete the verification challenge below to enable submission."
+            : "We review every inquiry directly and reply as soon as possible."}
         </p>
       </div>
 
