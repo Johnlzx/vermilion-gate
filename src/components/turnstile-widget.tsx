@@ -40,6 +40,18 @@ interface TurnstileWidgetProps {
   onToken: (token: string) => void;
 }
 
+export function getTurnstileRenderOptions(
+  siteKey: string,
+  onToken: (token: string) => void,
+) {
+  return {
+    sitekey: siteKey,
+    size: "flexible" as const,
+    appearance: "always" as const,
+    callback: onToken,
+  };
+}
+
 export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
   const ref = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | null>(null);
@@ -61,12 +73,10 @@ export function TurnstileWidget({ onToken }: TurnstileWidgetProps) {
         return;
       }
 
-      widgetId.current = window.turnstile.render(ref.current, {
-        sitekey: SITE_KEY,
-        size: "flexible",
-        appearance: "interaction-only",
-        callback: handleCallback,
-      });
+      widgetId.current = window.turnstile.render(
+        ref.current,
+        getTurnstileRenderOptions(SITE_KEY, handleCallback),
+      );
     };
 
     onScriptReady(render);
