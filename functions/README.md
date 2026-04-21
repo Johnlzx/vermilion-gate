@@ -8,7 +8,7 @@ All bindings and environment variables are configured in the Cloudflare Pages da
 
 | Type | Binding Name | Description |
 |------|--------------|-------------|
-| KV Namespace | `RATE_LIMIT` | Per-IP contact form rate limiting |
+| KV Namespace | `VERMILION_GATE_RATE_LIMIT` | Per-IP contact form rate limiting |
 
 ### Secrets (Settings → Environment variables → Encrypted)
 
@@ -25,7 +25,7 @@ All bindings and environment variables are configured in the Cloudflare Pages da
 
 | Environment | KV Namespace |
 |-------------|--------------|
-| Development | `RATE_LIMIT_DEV` |
-| Testing | `RATE_LIMIT_TEST` |
-| Staging | `RATE_LIMIT_STAG` |
-| Production | `RATE_LIMIT` |
+| Development | `VERMILION_GATE_RATE_LIMIT_DEV` |
+| Testing | `VERMILION_GATE_RATE_LIMIT_TEST` |
+| Staging | `VERMILION_GATE_RATE_LIMIT_STAG` |
+| Production | `VERMILION_GATE_RATE_LIMIT` |
