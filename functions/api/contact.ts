@@ -16,7 +16,7 @@ interface Env {
   SENDGRID_FROM_EMAIL?: string;
   SENDGRID_TO_EMAIL?: string;
   TURNSTILE_SECRET_KEY?: string;
-  RATE_LIMIT?: KvNamespaceLike;
+  VERMILION_GATE_RATE_LIMIT?: KvNamespaceLike;
   ENVIRONMENT?: string;
 }
 
@@ -72,10 +72,10 @@ export const onRequestPost = async (context: PagesContext) => {
       }
     }
 
-    if (context.env.RATE_LIMIT) {
+    if (context.env.VERMILION_GATE_RATE_LIMIT) {
       const ip = context.request.headers.get("CF-Connecting-IP") ?? "unknown";
       const allowed = await checkRateLimit({
-        kv: context.env.RATE_LIMIT,
+        kv: context.env.VERMILION_GATE_RATE_LIMIT,
         key: `rate:${ip}:/api/contact`,
         limit: 3,
         windowSeconds: 600,

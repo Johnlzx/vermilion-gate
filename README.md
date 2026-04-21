@@ -75,7 +75,7 @@ Set these Cloudflare Pages environment variables before deploying the contact fo
 
 Cloudflare bindings:
 
-- `RATE_LIMIT`: KV namespace for per-IP submission throttling
+- `VERMILION_GATE_RATE_LIMIT`: KV namespace for per-IP submission throttling
 
 See `functions/README.md` for the Pages dashboard setup.
 
@@ -86,7 +86,7 @@ The project is configured for Cloudflare Pages:
 1. Run `pnpm build` to generate the static export into `out/`.
 2. Deploy `out/` to Cloudflare Pages.
 3. Keep the `functions/` directory in the repository root so Pages Functions are bundled automatically.
-4. Configure the required secrets and `RATE_LIMIT` binding in Cloudflare Pages.
+4. Configure the required secrets and `VERMILION_GATE_RATE_LIMIT` binding in Cloudflare Pages.
 
 Environment-specific GitHub Actions workflows are included:
 

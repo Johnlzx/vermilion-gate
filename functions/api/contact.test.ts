@@ -51,7 +51,7 @@ function createContext(body: unknown, overrides?: {
       SENDGRID_FROM_EMAIL: "noreply@vermiliongate.test",
       SENDGRID_REGION: "eu",
       SENDGRID_TO_EMAIL: "",
-      RATE_LIMIT: overrides?.kv,
+      VERMILION_GATE_RATE_LIMIT: overrides?.kv,
       ENVIRONMENT: "testing",
       ...overrides?.env,
     },
