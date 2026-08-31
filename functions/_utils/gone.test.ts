@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { onRequest as industryFocusGone } from "../our-business/industry-focus";
 import { onRequest as partnersGone } from "../our-partners";
 import { respondGone } from "./gone";
 
@@ -25,8 +24,7 @@ describe("respondGone", () => {
     assert.match(await response.text(), /Page not found/);
   });
 
-  it("is wired to each deliberately retired route", () => {
-    assert.equal(industryFocusGone, respondGone);
+  it("is wired to the deliberately retired partners route", () => {
     assert.equal(partnersGone, respondGone);
   });
 });

@@ -11,7 +11,8 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-import { hashRoute, sitemapRoutes } from "../src/lib/sitemap-routes";
+import { hashRoute } from "../src/lib/sitemap-hash";
+import { sitemapRoutes } from "../src/lib/sitemap-routes";
 
 type LockEntry = { hash: string; lastmod: string };
 type Lock = Record<string, LockEntry>;

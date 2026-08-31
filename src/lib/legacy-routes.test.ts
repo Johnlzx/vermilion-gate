@@ -26,13 +26,43 @@ describe("legacy route contract", () => {
   it("permanently redirects every equivalent route and trailing-slash variant", () => {
     assert.deepEqual(loadRedirects(), [
       {
+        source: "/about-us",
+        destination: "/about-us/overview",
+        status: 301,
+      },
+      {
+        source: "/about-us/",
+        destination: "/about-us/overview",
+        status: 301,
+      },
+      {
         source: "/about-us/team-members",
-        destination: "/about-us/overview#founder",
+        destination: "/about-us/overview",
         status: 301,
       },
       {
         source: "/about-us/team-members/",
-        destination: "/about-us/overview#founder",
+        destination: "/about-us/overview",
+        status: 301,
+      },
+      {
+        source: "/our-business",
+        destination: "/our-business/overview",
+        status: 301,
+      },
+      {
+        source: "/our-business/",
+        destination: "/our-business/overview",
+        status: 301,
+      },
+      {
+        source: "/our-business/industry-focus",
+        destination: "/our-business/illustrative-themes",
+        status: 301,
+      },
+      {
+        source: "/our-business/industry-focus/",
+        destination: "/our-business/illustrative-themes",
         status: 301,
       },
       {
@@ -71,14 +101,15 @@ describe("legacy route contract", () => {
         destination: "/contact-us/our-office",
         status: 301,
       },
+      { source: "/sitemap", destination: "/sitemap.xml", status: 301 },
+      { source: "/sitemap/", destination: "/sitemap.xml", status: 301 },
+      { source: "/index.php", destination: "/", status: 301 },
     ]);
   });
 
   it("does not redirect deliberately retired content", () => {
     const sources = new Set(loadRedirects().map((rule) => rule.source));
 
-    assert.equal(sources.has("/our-business/industry-focus"), false);
-    assert.equal(sources.has("/our-business/industry-focus/"), false);
     assert.equal(sources.has("/our-partners"), false);
     assert.equal(sources.has("/our-partners/"), false);
   });

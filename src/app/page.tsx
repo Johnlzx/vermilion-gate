@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { company } from "@/lib/site-content";
 
 export const metadata = buildMetadata({
-  title: "We structure what others cannot yet fund",
+  title: "Vermilion Gate | Strategic Transactions & Capital Alignment",
   description: company.description,
   path: "/",
 });
