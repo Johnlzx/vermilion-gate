@@ -52,7 +52,9 @@ This keeps future updates reviewable and avoids pushing routine text changes thr
 - `/insights`: external links to LinkedIn and Substack
 - `/contact-us/our-office`: contact page
 
-Legacy CMS routes are redirected in `public/_redirects` so old links do not break.
+Legacy CMS routes with current equivalents are redirected in
+`public/_redirects`. Routes for deliberately retired content return `410 Gone`
+from exact Cloudflare Pages Functions while reusing the branded not-found page.
 
 ## Why this rebuild is easier to maintain
 
