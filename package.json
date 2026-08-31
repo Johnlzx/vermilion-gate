@@ -8,6 +8,7 @@
     "deploy": "pnpm build && wrangler pages deploy out --project-name=vermilion-gate",
     "start": "next start",
     "lint": "eslint",
+    "test": "tsx --test next.config.test.ts src/lib/*.test.ts src/components/*.test.ts functions/api/contact.test.ts functions/_utils/*.test.ts",
     "og:site": "tsx scripts/generate-og.ts",
     "sitemap:lock": "tsx scripts/sitemap-lock.ts"
   },
