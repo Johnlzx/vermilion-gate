@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { siteSocialImage } from "@/lib/metadata";
 import { company } from "@/lib/site-content";
 import { siteUrl } from "@/lib/site-url";
 
@@ -31,11 +32,11 @@ export const metadata: Metadata = {
     siteName: company.name,
     locale: "en_SG",
     type: "website",
-    images: ["/og/site.png"],
+    images: [siteSocialImage],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og/site.png"],
+    images: [siteSocialImage],
   },
 };
 

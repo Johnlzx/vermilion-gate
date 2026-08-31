@@ -4,6 +4,7 @@ import { company } from "@/lib/site-content";
 
 export const metadata = buildMetadata({
   title: "Vermilion Gate | Strategic Transactions & Capital Alignment",
+  socialTitle: "Vermilion Gate — Strategic Transactions & Capital Alignment",
   description: company.description,
   path: "/",
 });
