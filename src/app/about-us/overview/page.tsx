@@ -21,7 +21,7 @@ export default function AboutOverviewPage() {
   return (
     <main id="main-content">
       <PageHero
-        title="Overview"
+        title="About Vermilion Gate"
         backgroundImage="/assets/imagery/overview-banner-glass-grid.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },

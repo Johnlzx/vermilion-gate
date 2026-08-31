@@ -13,7 +13,7 @@ export default function BusinessOverviewPage() {
   return (
     <main id="main-content">
       <PageHero
-        title="Overview"
+        title="What We Do"
         backgroundImage="/assets/imagery/our-business-banner-curved-metallic-facade.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },
