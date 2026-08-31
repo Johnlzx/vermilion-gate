@@ -55,6 +55,8 @@ This keeps future updates reviewable and avoids pushing routine text changes thr
 Legacy CMS routes with current equivalents are redirected in
 `public/_redirects`. Routes for deliberately retired content return `410 Gone`
 from exact Cloudflare Pages Functions while reusing the branded not-found page.
+Host canonicalization and the post-deployment Search Console procedure are
+documented in `docs/search-index-cleanup.md`.
 
 ## Why this rebuild is easier to maintain
 
