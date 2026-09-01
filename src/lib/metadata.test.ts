@@ -3,6 +3,8 @@ import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 import path from "node:path";
 
+import { metadata as aboutMetadata } from "@/app/about-us/overview/page";
+import { metadata as businessMetadata } from "@/app/our-business/overview/page";
 import { metadata as homeMetadata } from "@/app/page";
 
 import { buildMetadata, siteSocialImage } from "./metadata";
@@ -20,6 +22,25 @@ describe("site metadata", () => {
     assert.equal(
       homeMetadata.twitter?.title,
       "Vermilion Gate — Strategic Transactions & Capital Alignment",
+    );
+  });
+
+  it("aligns the overview page titles with their positioning", () => {
+    assert.deepEqual(aboutMetadata.title, {
+      absolute: "About Vermilion Gate | Strategic Advisory",
+    });
+    assert.equal(
+      aboutMetadata.openGraph?.title,
+      "About Vermilion Gate | Strategic Advisory",
+    );
+    assert.equal(businessMetadata.title, "Strategic Advisory Services");
+    assert.equal(
+      businessMetadata.openGraph?.title,
+      "What We Do — Strategic Transactions & Capital Alignment",
+    );
+    assert.equal(
+      businessMetadata.twitter?.title,
+      "What We Do — Strategic Transactions & Capital Alignment",
     );
   });
 
