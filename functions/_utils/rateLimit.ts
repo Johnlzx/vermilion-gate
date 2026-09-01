@@ -30,9 +30,7 @@ export async function checkRateLimit({
     return false;
   }
 
-  const uniqueKey = `${prefix}${Date.now()}-${Math.random()
-    .toString(36)
-    .slice(2, 8)}`;
+  const uniqueKey = `${prefix}${Date.now()}-${crypto.randomUUID()}`;
   await kv.put(uniqueKey, "1", { expirationTtl: windowSeconds });
 
   return true;

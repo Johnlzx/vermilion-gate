@@ -16,10 +16,24 @@ export const initialInquiryFormState: InquiryFormState = {
   message: "",
 };
 
+export const inquiryFieldLimits = {
+  name: 120,
+  email: 254,
+  contactNumber: 50,
+  subject: 200,
+  message: 5_000,
+} as const satisfies Record<keyof InquiryFormState, number>;
+
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function trimField(value: string | undefined): string {
+function trimField(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : {};
 }
 
 function escapeHtml(value: string): string {
@@ -31,14 +45,16 @@ function escapeHtml(value: string): string {
 }
 
 export function normalizeInquiryForm(
-  value: Partial<InquiryFormState> | null | undefined,
+  value: unknown,
 ): InquiryFormState {
+  const record = asRecord(value);
+
   return {
-    name: trimField(value?.name),
-    email: trimField(value?.email),
-    contactNumber: trimField(value?.contactNumber),
-    subject: trimField(value?.subject),
-    message: trimField(value?.message),
+    name: trimField(record.name),
+    email: trimField(record.email),
+    contactNumber: trimField(record.contactNumber),
+    subject: trimField(record.subject),
+    message: trimField(record.message),
   };
 }
 
@@ -49,20 +65,32 @@ export function validateInquiryForm(
 
   if (!nextForm.name) {
     nextErrors.name = "Please share your name.";
+  } else if (nextForm.name.length > inquiryFieldLimits.name) {
+    nextErrors.name = `Please keep your name under ${inquiryFieldLimits.name} characters.`;
   }
 
   if (!nextForm.email) {
     nextErrors.email = "Please share your email address.";
   } else if (!emailPattern.test(nextForm.email)) {
     nextErrors.email = "Please enter a valid email address.";
+  } else if (nextForm.email.length > inquiryFieldLimits.email) {
+    nextErrors.email = "Please enter a shorter email address.";
+  }
+
+  if (nextForm.contactNumber.length > inquiryFieldLimits.contactNumber) {
+    nextErrors.contactNumber = `Please keep your contact number under ${inquiryFieldLimits.contactNumber} characters.`;
   }
 
   if (!nextForm.subject) {
     nextErrors.subject = "Please add a short subject line.";
+  } else if (nextForm.subject.length > inquiryFieldLimits.subject) {
+    nextErrors.subject = `Please keep the subject under ${inquiryFieldLimits.subject} characters.`;
   }
 
   if (!nextForm.message) {
     nextErrors.message = "Please add a short description of your brief.";
+  } else if (nextForm.message.length > inquiryFieldLimits.message) {
+    nextErrors.message = `Please keep your message under ${inquiryFieldLimits.message.toLocaleString("en")} characters.`;
   }
 
   return nextErrors;

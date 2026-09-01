@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "pnpm sitemap:check && next build",
-    "deploy": "pnpm build && wrangler pages deploy out --project-name=vermilion-gate",
+    "deploy": "pnpm contact:config:check && pnpm build && wrangler pages deploy out --project-name=vermilion-gate",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test next.config.test.ts src/lib/*.test.ts src/components/*.test.ts functions/api/contact.test.ts functions/_utils/*.test.ts",
+    "test": "tsx --test next.config.test.ts src/lib/*.test.ts src/components/*.test.ts functions/api/*.test.ts functions/_utils/*.test.ts",
+    "contact:config:check": "tsx scripts/check-contact-config.ts",
     "og:site": "tsx scripts/generate-og.ts",
     "sitemap:check": "tsx scripts/sitemap-check.ts",
     "sitemap:lock": "tsx scripts/sitemap-lock.ts"

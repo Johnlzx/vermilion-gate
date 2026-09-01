@@ -4,6 +4,8 @@ import { describe, it } from "node:test";
 import {
   buildInquiryEmailContent,
   initialInquiryFormState,
+  inquiryFieldLimits,
+  normalizeInquiryForm,
   validateInquiryForm,
 } from "./inquiry-form";
 
@@ -34,6 +36,38 @@ describe("validateInquiryForm", () => {
 
   it("accepts a complete valid form", () => {
     assert.deepEqual(validateInquiryForm(validForm), {});
+  });
+
+  it("rejects values beyond the transport limits", () => {
+    assert.deepEqual(
+      validateInquiryForm({
+        ...validForm,
+        name: "x".repeat(inquiryFieldLimits.name + 1),
+        message: "x".repeat(inquiryFieldLimits.message + 1),
+      }),
+      {
+        name: "Please keep your name under 120 characters.",
+        message: "Please keep your message under 5,000 characters.",
+      },
+    );
+  });
+});
+
+describe("normalizeInquiryForm", () => {
+  it("trims strings and safely ignores non-string input", () => {
+    assert.deepEqual(
+      normalizeInquiryForm({
+        name: "  Jane Doe  ",
+        email: 42,
+        subject: "  Brief  ",
+      }),
+      {
+        ...initialInquiryFormState,
+        name: "Jane Doe",
+        subject: "Brief",
+      },
+    );
+    assert.deepEqual(normalizeInquiryForm(null), initialInquiryFormState);
   });
 });
 

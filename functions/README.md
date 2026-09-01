@@ -21,6 +21,16 @@ All bindings and environment variables are configured in the Cloudflare Pages da
 | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret key for bot protection |
 | `ENVIRONMENT` | `development` / `testing` / `staging` / `production` |
 
+`NEXT_PUBLIC_TURNSTILE_SITE_KEY` is not a Pages Function runtime secret. It must
+be present while `next build` runs. The GitHub Actions workflow reads it from
+the `TURNSTILE_SITE_KEY` repository variable and blocks deployment when it is
+missing.
+
+The contact endpoint returns a request reference and writes structured
+`inquiry_delivery_started`, `inquiry_delivery_accepted`, or
+`inquiry_delivery_failed` events without logging the enquiry contents. A
+successful response confirms SendGrid acceptance, not final inbox delivery.
+
 ### Per-Environment Resources
 
 | Environment | KV Namespace |
