@@ -9,10 +9,12 @@ describe("getInquiryFormSubmitState", () => {
       getInquiryFormSubmitState({
         submitting: true,
         turnstileEnabled: false,
+        turnstileRequired: false,
         turnstileToken: "",
       }),
       {
         disabled: true,
+        verificationUnavailable: false,
         waitingForVerification: false,
       },
     );
@@ -23,10 +25,12 @@ describe("getInquiryFormSubmitState", () => {
       getInquiryFormSubmitState({
         submitting: false,
         turnstileEnabled: true,
+        turnstileRequired: true,
         turnstileToken: "",
       }),
       {
         disabled: true,
+        verificationUnavailable: false,
         waitingForVerification: true,
       },
     );
@@ -37,10 +41,28 @@ describe("getInquiryFormSubmitState", () => {
       getInquiryFormSubmitState({
         submitting: false,
         turnstileEnabled: true,
+        turnstileRequired: true,
         turnstileToken: "turnstile-token",
       }),
       {
         disabled: false,
+        verificationUnavailable: false,
+        waitingForVerification: false,
+      },
+    );
+  });
+
+  it("fails closed when production verification is not configured", () => {
+    assert.deepEqual(
+      getInquiryFormSubmitState({
+        submitting: false,
+        turnstileEnabled: false,
+        turnstileRequired: true,
+        turnstileToken: "",
+      }),
+      {
+        disabled: true,
+        verificationUnavailable: true,
         waitingForVerification: false,
       },
     );

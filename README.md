@@ -67,11 +67,17 @@ documented in `docs/search-index-cleanup.md`.
 
 ## Inquiry form environment
 
-Set these Cloudflare Pages environment variables before deploying the contact form:
+Set the Turnstile site key in the environment that runs `next build`. Static
+exports cannot read a Pages runtime variable after the build has finished:
 
-- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`: Cloudflare Turnstile site key exposed at build time
+- `TURNSTILE_SITE_KEY`: GitHub Actions repository variable used by the deployment workflow
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`: the same site key when building or deploying manually
+
+Set these Cloudflare Pages runtime environment variables before deploying the
+contact form:
+
 - `SENDGRID_API_KEY`: required SendGrid API key
-- `SENDGRID_FROM_EMAIL`: verified sender email used by SendGrid
+- `SENDGRID_FROM_EMAIL`: required verified sender email used by SendGrid
 - `SENDGRID_TO_EMAIL`: optional override for the inquiry recipient, defaults to `info@vermiliongate.com`
 - `SENDGRID_REGION`: optional `eu` or `global`, defaults to `eu`
 - `TURNSTILE_SECRET_KEY`: Cloudflare Turnstile secret for server-side verification
@@ -80,6 +86,12 @@ Set these Cloudflare Pages environment variables before deploying the contact fo
 Cloudflare bindings:
 
 - `VERMILION_GATE_RATE_LIMIT`: KV namespace for per-IP submission throttling
+
+The deployment command and GitHub Actions workflow fail before deployment when
+the public Turnstile site key is missing. At runtime, the API also fails closed
+when the Turnstile secret or SendGrid configuration is absent. Successful API
+responses mean SendGrid accepted the message for delivery; final inbox delivery
+still needs to be checked in SendGrid activity or through an Event Webhook.
 
 See `functions/README.md` for the Pages dashboard setup.
 
