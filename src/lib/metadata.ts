@@ -13,6 +13,7 @@ export const siteSocialImage = {
 
 type MetadataInput = {
   title: string;
+  absoluteTitle?: boolean;
   socialTitle?: string;
   description: string;
   path: string;
@@ -20,6 +21,7 @@ type MetadataInput = {
 
 export function buildMetadata({
   title,
+  absoluteTitle = false,
   socialTitle = title,
   description,
   path,
@@ -27,7 +29,7 @@ export function buildMetadata({
   const url = new URL(path, siteUrl).toString();
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: {
       canonical: url,

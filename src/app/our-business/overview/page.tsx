@@ -3,7 +3,8 @@ import { buildMetadata } from "@/lib/metadata";
 import { businessSidebar, whatWeDoSections } from "@/lib/site-content";
 
 export const metadata = buildMetadata({
-  title: "Our business overview",
+  title: "Strategic Advisory Services",
+  socialTitle: "What We Do — Strategic Transactions & Capital Alignment",
   description:
     "Situation-defined mandates across strategic transactions, capital alignment, capital allocation strategy, and special situations.",
   path: "/our-business/overview",
