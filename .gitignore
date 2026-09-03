@@ -40,8 +40,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# cloudflare local development state
+/.wrangler/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 /.omc
+/.omx
+.omx/

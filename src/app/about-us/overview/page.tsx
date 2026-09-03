@@ -11,7 +11,8 @@ import {
 } from "@/lib/site-content";
 
 export const metadata = buildMetadata({
-  title: "About us overview",
+  title: "About Vermilion Gate | Strategic Advisory",
+  absoluteTitle: true,
   description:
     "Singapore-based founder-led advisory platform led by Loo Cheng Guan.",
   path: "/about-us/overview",
@@ -21,7 +22,7 @@ export default function AboutOverviewPage() {
   return (
     <main id="main-content">
       <PageHero
-        title="Overview"
+        title="About Vermilion Gate"
         backgroundImage="/assets/imagery/overview-banner-glass-grid.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },

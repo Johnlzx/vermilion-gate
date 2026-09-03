@@ -3,9 +3,9 @@ import { buildMetadata } from "@/lib/metadata";
 import { illustrativeThemes, themesSidebar } from "@/lib/site-content";
 
 export const metadata = buildMetadata({
-  title: "Illustrative themes",
+  title: "Illustrative Themes",
   description:
-    "Illustrative themes instead of a legacy transaction list: capital misalignment, listed company realignment, cross-border ownership transitions, and special situations.",
+    "Illustrative themes across capital misalignment, listed company realignment, cross-border ownership transitions, and special situations.",
   path: "/our-business/illustrative-themes",
 });
 
@@ -34,8 +34,8 @@ export default function IllustrativeThemesPage() {
               <div className="content-section__copy">
                 <p>
                   The themes below describe the kinds of situations Vermilion
-                  Gate works on, without relying on a legacy transaction list
-                  or tombstone format.
+                  Gate works on, organized around structural tension,
+                  ownership logic, and capital fit.
                 </p>
               </div>
             </section>

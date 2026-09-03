@@ -4,10 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm sitemap:check && next build",
+    "deploy": "pnpm contact:config:check && pnpm build && wrangler pages deploy out --project-name=vermilion-gate",
     "start": "next start",
     "lint": "eslint",
+    "test": "tsx --test next.config.test.ts src/lib/*.test.ts src/components/*.test.ts functions/api/*.test.ts functions/_utils/*.test.ts",
+    "contact:config:check": "tsx scripts/check-contact-config.ts",
     "og:site": "tsx scripts/generate-og.ts",
+    "sitemap:check": "tsx scripts/sitemap-check.ts",
     "sitemap:lock": "tsx scripts/sitemap-lock.ts"
   },
   "dependencies": {
@@ -22,6 +26,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "tsx": "^4.20.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.83.0"
   }
 }
