@@ -40,6 +40,14 @@ describe("selected situations page", () => {
     assert.match(markup, /principal-led advisory firm/);
     assert.match(markup, /For more than a decade, his work through Vermilion Gate has focused/);
     assert.match(markup, /Start a conversation/);
+    assert.equal(
+      (
+        markup.match(
+          /class="ed-section__body ed-prose ed-prose--statement"/g,
+        ) ?? []
+      ).length,
+      2,
+    );
     assert.doesNotMatch(markup, /mandate-led advisory platform/);
     assert.doesNotMatch(markup, /Not a general corporate finance shop/);
     assert.doesNotMatch(markup, /Not a broad project-finance adviser/);

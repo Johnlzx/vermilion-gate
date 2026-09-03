@@ -79,7 +79,9 @@ describe("InquiryForm", () => {
     assert.match(markup, />Organisation<\/span>/);
     assert.match(markup, />Email\*<\/span>/);
     assert.match(markup, />What are you trying to achieve\?\*<\/span>/);
-    assert.match(markup, />Start a conversation →<\/button>/);
+    assert.match(markup, />Start a conversation<\/span>/);
+    assert.match(markup, /class="submit-button__icon"/);
+    assert.match(markup, /d="M3 10H17M12 5L17 10L12 15"/);
     assert.doesNotMatch(markup, />Contact Number<\/span>/);
     assert.doesNotMatch(markup, />Subject \*<\/span>/);
   });
