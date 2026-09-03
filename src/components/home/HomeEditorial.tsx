@@ -125,6 +125,24 @@ export function HomeEditorial() {
           </header>
           <div className="ed-section__body ed-prose ed-prose--statement">
             <p>{homeFounderLed.copy}</p>
+            <Link
+              className="ed-founder-jump"
+              href="/our-business/selected-situations"
+              aria-label="Explore selected situations"
+            >
+              <span className="ed-founder-jump__label">
+                Explore selected situations
+              </span>
+              <span className="ed-founder-jump__icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M5 15L15 5M8 5H15V12" />
+                </svg>
+              </span>
+            </Link>
           </div>
         </div>
       </section>

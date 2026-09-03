@@ -20,9 +20,16 @@ describe("selected situations page", () => {
     const homeMarkup = renderToStaticMarkup(Home());
     const situationsMarkup = renderToStaticMarkup(SelectedSituationsPage());
     const proofPoint = "CEO of RidgeField Capital and a board member of CastleReach";
+    const jumpLabel = "Explore selected situations";
 
     assert.match(homeMarkup, new RegExp(proofPoint));
     assert.ok(homeMarkup.indexOf("Founder-led") < homeMarkup.indexOf(proofPoint));
+    assert.ok(homeMarkup.indexOf(proofPoint) < homeMarkup.indexOf(jumpLabel));
+    assert.match(
+      homeMarkup,
+      /class="ed-founder-jump"[^>]*href="\/our-business\/selected-situations"/,
+    );
+    assert.match(homeMarkup, /aria-label="Explore selected situations"/);
     assert.doesNotMatch(situationsMarkup, new RegExp(proofPoint));
   });
 
