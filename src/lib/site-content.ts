@@ -26,11 +26,13 @@ export type DetailBlock = {
   details: string[];
 };
 
-export type ThemeBlock = {
+export type SituationBlock = {
   id: string;
   title: string;
-  summary: string;
-  examples: string[];
+  setting: string;
+  constraint: string;
+  work: string;
+  result: string;
 };
 
 export type InsightLink = {
@@ -102,7 +104,7 @@ export const primaryNavigation: NavigationItem[] = [
       },
       {
         href: "/our-business/illustrative-themes",
-        label: "Illustrative Themes",
+        label: "Selected Situations",
       },
     ],
   },
@@ -131,14 +133,11 @@ export const businessSidebar: SidebarLink[] = [
   { href: "#special-situations-and-strategic-realignment", label: "Special situations" },
 ];
 
-export const themesSidebar: SidebarLink[] = [
-  { href: "#capital-misalignment", label: "Capital misalignment" },
-  { href: "#listed-company-realignment", label: "Listed company realignment" },
-  {
-    href: "#cross-border-ownership-and-capital-transitions",
-    label: "Cross-border transitions",
-  },
-  { href: "#special-situations", label: "Special situations" },
+export const situationsSidebar: SidebarLink[] = [
+  { href: "#institutional-context", label: "Institutional context" },
+  { href: "#designing-the-business", label: "Designing the business" },
+  { href: "#separating-project-risk", label: "Separating project risk" },
+  { href: "#fundraising-around-evidence", label: "Fundraising around evidence" },
 ];
 
 export const homeFocusBlocks: FocusBlock[] = [
@@ -259,6 +258,9 @@ export const founder = {
     "Not every situation needs more capital. Some need a different structure.",
 };
 
+export const institutionalContext =
+  "Current roles include CEO of RidgeField Capital and board member of CastleReach, alongside more than a decade of building and advising through Vermilion Gate.";
+
 export const founderExperience: FocusBlock[] = [
   {
     title: "Fund management",
@@ -352,50 +354,42 @@ export const whatWeDoSections: DetailBlock[] = [
   },
 ];
 
-export const illustrativeThemes: ThemeBlock[] = [
+export const selectedSituations: SituationBlock[] = [
   {
-    id: "capital-misalignment",
-    title: "Capital misalignment",
-    summary:
-      "The issue is not absence of capital, but capital sitting against the wrong asset, wrapper, or objective.",
-    examples: [
-      "Capital allocated to a structure that no longer reflects the operating business.",
-      "Shareholder expectations diverging from what the balance sheet can support.",
-      "Financing logic persisting after the strategic rationale has changed.",
-    ],
+    id: "designing-the-business",
+    title: "Designing the business before combining the companies",
+    setting:
+      "Two established businesses in different Asian markets were considering a combination to create a regional services platform.",
+    constraint:
+      "The strategic ambition had advanced ahead of the post-combination operating model.",
+    work:
+      "Vermilion Gate reviewed the business plans and financial assumptions, helped define how the combined platform would develop in stages, and required a consolidated model before the proposed ownership exchange and fundraising structure could be properly assessed.",
+    result:
+      "The discussion moved from a headline merger towards a phased regional-platform strategy supported by clearer operating priorities, financial requirements and diligence questions. The transaction process advanced, although the combination was not ultimately completed.",
   },
   {
-    id: "listed-company-realignment",
-    title: "Listed company realignment",
-    summary:
-      "A listed entity or market wrapper no longer serving strategic intent, capital formation, or control logic.",
-    examples: [
-      "Public market status creating friction rather than optionality.",
-      "A listed vehicle requiring a rethink of ownership path, control, or capital access.",
-      "Need to reassess whether the wrapper still fits the underlying business reality.",
-    ],
+    id: "separating-project-risk",
+    title: "Separating technology, delivery and operating risk before project financing",
+    setting:
+      "A sponsor and several technical and operating partners were developing a capital-intensive production project.",
+    constraint:
+      "Technology ownership, delivery responsibility, operational performance and capital exposure were insufficiently separated.",
+    work:
+      "Vermilion Gate developed the decision and financial framework, proposed the project and funding structure, separated construction responsibilities from operating obligations, and introduced independent technical validation. Vendor economics were linked to project gates, while operating obligations were tied to performance measures and step-in rights.",
+    result:
+      "The project was reframed as a phased and contractually accountable structure, with clearer ownership, risk allocation and conditions for financial close. It was subsequently paused before capital was committed.",
   },
   {
-    id: "cross-border-ownership-and-capital-transitions",
-    title: "Cross-border ownership and capital transitions",
-    summary:
-      "Ownership transitions across borders where local context and capital-provider expectations need cleaner alignment.",
-    examples: [
-      "Incoming capital and local operators carrying different assumptions about control.",
-      "Cross-border transitions where structure must be reset before capital can move with confidence.",
-      "Ownership handovers complicated by mismatched timing, incentives, or market positioning.",
-    ],
-  },
-  {
-    id: "special-situations",
-    title: "Special situations",
-    summary:
-      "Situations where the narrative is no longer enough and structural judgment is required to restore direction.",
-    examples: [
-      "Assets or corporate structures stuck between historical decisions and current needs.",
-      "Strategic resets after capital dead ends, governance tension, or stalled transactions.",
-      "Assignments where action has stopped because incentives no longer line up.",
-    ],
+    id: "fundraising-around-evidence",
+    title: "Restructuring a cross-border fundraising strategy around evidence",
+    setting:
+      "An industrial-technology company operating across several jurisdictions was preparing an institutional growth round after completing an earlier validation financing.",
+    constraint:
+      "The fundraising narrative had to reconcile its holding structure, operating footprint, intellectual property, shareholder profile and valuation expectations.",
+    work:
+      "Vermilion Gate reframed the round around commercial proof and defined milestones, challenged the valuation and funding assumptions, prepared the company for investor diligence, and sequenced engagement between financial and strategic investors.",
+    result:
+      "The proposed round was resized and the process became more disciplined. Diligence advanced around customer validation, ownership, intellectual property, financial performance and operating substance. The fundraising remained in progress rather than being presented as a completed raise.",
   },
 ];
 
@@ -438,7 +432,7 @@ export const frequentlyAskedQuestions = [
   {
     question: "Do you publish a transaction list or tombstones?",
     answer:
-      "No. The site now uses illustrative themes instead of legacy transaction references because the work is better explained through structure and situation type.",
+      "No. The site uses selected, anonymised situations instead of legacy transaction references because the work is better explained through the initial constraint, the work performed, and the resulting decision or structural change.",
   },
   {
     question: "Is the work sector-defined?",

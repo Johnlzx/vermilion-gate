@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import AboutOverviewPage from "@/app/about-us/overview/page";
 import Home from "@/app/page";
+import SelectedSituationsPage from "@/app/our-business/illustrative-themes/page";
 import BusinessOverviewPage from "@/app/our-business/overview/page";
 
 function assertSingleH1(markup: string, text: string) {
@@ -33,5 +34,11 @@ describe("primary page headings", () => {
     const markup = renderToStaticMarkup(BusinessOverviewPage());
 
     assertSingleH1(markup, "What We Do");
+  });
+
+  it("uses the client-approved title for the situations page", () => {
+    const markup = renderToStaticMarkup(SelectedSituationsPage());
+
+    assertSingleH1(markup, "Selected Situations");
   });
 });

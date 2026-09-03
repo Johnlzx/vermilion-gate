@@ -1,65 +1,110 @@
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
-import { illustrativeThemes, themesSidebar } from "@/lib/site-content";
+import {
+  institutionalContext,
+  selectedSituations,
+  situationsSidebar,
+} from "@/lib/site-content";
 
 export const metadata = buildMetadata({
-  title: "Illustrative Themes",
+  title: "Selected Situations",
   description:
-    "Illustrative themes across capital misalignment, listed company realignment, cross-border ownership transitions, and special situations.",
+    "Selected anonymised situations showing Vermilion Gate's judgment-led transaction and strategic advisory work.",
   path: "/our-business/illustrative-themes",
 });
 
-export default function IllustrativeThemesPage() {
+export default function SelectedSituationsPage() {
   return (
     <main id="main-content">
       <PageHero
-        title="Illustrative Themes"
+        title="Selected Situations"
         backgroundImage="/assets/imagery/our-business-banner-curved-metallic-facade.jpg"
         breadcrumbs={[
           { href: "/", label: "Home" },
           { href: "/our-business/overview", label: "Our Business" },
-          { label: "Illustrative Themes" },
+          { label: "Selected Situations" },
         ]}
       />
 
       <section className="classic-section">
         <div className="container inner-page-grid">
-          <article className="content-article">
-            <section className="content-section">
+          <article className="content-article situations-page">
+            <section
+              id="institutional-context"
+              className="institutional-proof"
+              aria-labelledby="institutional-context-title"
+            >
+              <p className="section-kicker">Institutional context</p>
+              <h2
+                id="institutional-context-title"
+                className="institutional-proof__title"
+              >
+                Experience behind the advice
+              </h2>
+              <p className="institutional-proof__copy">{institutionalContext}</p>
+            </section>
+
+            <section className="content-section situations-intro">
               <h2 className="content-section__title">
-                We focus on situations where structure matters more than story,
-                and where the allocator&apos;s question is as important as the
-                promoter&apos;s narrative.
+                Judgment is most useful when it changes the decision, not merely
+                the process.
               </h2>
               <div className="content-section__copy">
                 <p>
-                  The themes below describe the kinds of situations Vermilion
-                  Gate works on, organized around structural tension,
-                  ownership logic, and capital fit.
+                  These situations are drawn from work undertaken through
+                  Vermilion Gate. They show how an initial constraint was
+                  tested, how the structure was changed, and what decision
+                  followed.
                 </p>
               </div>
+              <aside className="anonymisation-note" aria-label="Anonymisation note">
+                <span className="anonymisation-note__label">Confidentiality</span>
+                <p>
+                  Company names, jurisdictions, transaction figures and
+                  counterparties have been omitted. No situation is presented
+                  as completed where the underlying merger, financing or
+                  project did not complete.
+                </p>
+              </aside>
             </section>
 
-            {illustrativeThemes.map((item) => (
-              <section key={item.id} id={item.id} className="content-section">
-                <h2 className="content-section__title">{item.title}</h2>
-                <div className="content-section__copy">
-                  <p>{item.summary}</p>
-                </div>
-                <ul className="detail-list">
-                  {item.examples.map((example) => (
-                    <li key={example} className="detail-list__item">
-                      <p>{example}</p>
-                    </li>
-                  ))}
-                </ul>
+            {selectedSituations.map((item, index) => (
+              <section
+                key={item.id}
+                id={item.id}
+                className="content-section situation"
+              >
+                <header className="situation__header">
+                  <p className="situation__number">
+                    Situation {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h2 className="content-section__title">{item.title}</h2>
+                  <p className="situation__setting">{item.setting}</p>
+                </header>
+                <dl className="situation__sequence">
+                  <div className="situation__step">
+                    <dt>Initial constraint</dt>
+                    <dd>{item.constraint}</dd>
+                  </div>
+                  <div className="situation__step">
+                    <dt>Work performed</dt>
+                    <dd>{item.work}</dd>
+                  </div>
+                  <div className="situation__step">
+                    <dt>Resulting decision</dt>
+                    <dd>{item.result}</dd>
+                  </div>
+                </dl>
               </section>
             ))}
           </article>
 
           <aside className="page-aside">
-            <nav className="page-aside__nav" aria-label="Theme page sections">
-              {themesSidebar.map((item) => (
+            <nav
+              className="page-aside__nav"
+              aria-label="Selected situations page sections"
+            >
+              {situationsSidebar.map((item) => (
                 <a key={item.href} className="page-aside__link" href={item.href}>
                   {item.label}
                 </a>
