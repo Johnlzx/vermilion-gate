@@ -1573,16 +1573,13 @@ textarea:disabled {
 }
 
 .ed-founder-jump__icon {
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 1.25rem;
+  height: 1.25rem;
   display: grid;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid var(--border-strong);
   color: var(--text-primary);
   transition:
-    background-color var(--transition),
-    border-color var(--transition),
     color var(--transition),
     transform var(--transition);
 }
@@ -1603,9 +1600,7 @@ textarea:disabled {
 }
 
 .ed-founder-jump:hover .ed-founder-jump__icon {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--background);
+  color: var(--accent);
 }
 
 .ed-founder-jump:hover .ed-founder-jump__icon svg {
