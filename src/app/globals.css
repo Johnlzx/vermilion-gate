@@ -1555,6 +1555,67 @@ textarea:disabled {
   text-wrap: balance;
 }
 
+.ed-founder-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: clamp(1.75rem, 3vw, 2.35rem);
+  color: var(--text-primary);
+}
+
+.ed-founder-jump__label {
+  font-size: 0.72rem;
+  font-weight: 620;
+  letter-spacing: 0.16em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+
+.ed-founder-jump__icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.ed-founder-jump__icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.35;
+  transition: transform var(--transition);
+}
+
+.ed-founder-jump:hover .ed-founder-jump__label {
+  color: var(--accent);
+}
+
+.ed-founder-jump:hover .ed-founder-jump__icon {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--background);
+}
+
+.ed-founder-jump:hover .ed-founder-jump__icon svg {
+  transform: translate(1.5px, -1.5px);
+}
+
+.ed-founder-jump:active .ed-founder-jump__icon {
+  transform: scale(0.96);
+}
+
 /* Short-note treatment: short lines, generous line-spacing, no paragraph
    indentation. Reads like a series of short statements rather than prose. */
 .ed-note {
