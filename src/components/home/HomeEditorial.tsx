@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { TypographicArrow } from "@/components/typographic-arrow";
 import {
   homeFocusBlocks,
   homeFounderLed,
@@ -8,7 +9,6 @@ import {
   homeWhatThisMeans,
   homeWhatWeAreNot,
   howWeWork,
-  whatWeAreNot,
 } from "@/lib/site-content";
 
 export function HomeEditorial() {
@@ -23,7 +23,7 @@ export function HomeEditorial() {
           </div>
           <div className="ed-hero__aside">
             <p className="ed-hero__intro">
-              Vermilion Gate is a mandate-led advisory platform focused on
+              Vermilion Gate is a principal-led advisory firm focused on
               strategic transactions, capital alignment, capital allocation
               strategy, and special situations where structure, ownership, or
               market positioning no longer fit reality.
@@ -34,9 +34,9 @@ export function HomeEditorial() {
             </p>
             <div className="ed-hero__actions">
               <Link className="ed-button" href="/contact-us/our-office">
-                <span>Talk to us</span>
+                <span>Start a conversation</span>
                 <span className="ed-button__icon" aria-hidden="true">
-                  ↗
+                  <TypographicArrow direction="right" />
                 </span>
               </Link>
               <Link className="ed-link" href="/insights">
@@ -134,13 +134,7 @@ export function HomeEditorial() {
                 Explore selected situations
               </span>
               <span className="ed-founder-jump__icon" aria-hidden="true">
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M5 15L15 5M8 5H15V12" />
-                </svg>
+                <TypographicArrow />
               </span>
             </Link>
           </div>
@@ -165,7 +159,7 @@ export function HomeEditorial() {
                   >
                     {link.label}
                     <span className="ed-channels__arrow" aria-hidden="true">
-                      ↗
+                      <TypographicArrow />
                     </span>
                   </a>
                   <p className="ed-channels__description">
@@ -178,30 +172,16 @@ export function HomeEditorial() {
         </div>
       </section>
 
-      <section className="ed-section ed-section--muted ed-section--boundary ed-boundary">
-        <div className="container ed-boundary__grid">
-          <div className="ed-boundary__lede">
-            <header className="ed-section__head ed-section__head--split">
-              <p className="ed-kicker">{homeWhatWeAreNot.heading}</p>
-              <h2 className="ed-display ed-display--statement">
-                {homeWhatWeAreNot.title}
-              </h2>
-            </header>
-            <div className="ed-section__body">
-              <p className="ed-prose ed-prose--statement">{homeWhatWeAreNot.copy}</p>
-            </div>
+      <section className="ed-section ed-section--muted ed-section--boundary">
+        <div className="container">
+          <header className="ed-section__head">
+            <h2 className="ed-display">{homeWhatWeAreNot.heading}</h2>
+          </header>
+          <div className="ed-section__body">
+            <p className="ed-prose ed-prose--statement">
+              {homeWhatWeAreNot.copy}
+            </p>
           </div>
-          <ol className="ed-index ed-index--plain ed-boundary__list">
-            {whatWeAreNot.map((item, index) => (
-              <li key={item.title} className="ed-index__row">
-                <span className="ed-index__number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="ed-index__title">{item.title}</span>
-                <span className="ed-index__summary">{item.summary}</span>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
     </>

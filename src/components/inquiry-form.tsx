@@ -135,7 +135,10 @@ export function InquiryForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formElement = event.currentTarget;
-    const normalizedForm = normalizeInquiryForm(form);
+    const normalizedForm = normalizeInquiryForm({
+      ...form,
+      subject: "Website enquiry",
+    });
     const nextErrors = validateInquiryForm(normalizedForm);
 
     setErrors(nextErrors);
@@ -231,7 +234,7 @@ export function InquiryForm() {
       onSubmit={handleSubmit}
     >
       <label className="field">
-        <span className="field__label">Name *</span>
+        <span className="field__label">Name*</span>
         <input
           aria-describedby={errors.name ? "error-name" : undefined}
           aria-invalid={Boolean(errors.name)}
@@ -252,7 +255,27 @@ export function InquiryForm() {
       </label>
 
       <label className="field">
-        <span className="field__label">Email Address *</span>
+        <span className="field__label">Organisation</span>
+        <input
+          aria-describedby={errors.contactNumber ? "error-organisation" : undefined}
+          aria-invalid={Boolean(errors.contactNumber)}
+          autoComplete="organization"
+          disabled={submitting}
+          maxLength={inquiryFieldLimits.contactNumber}
+          name="contactNumber"
+          onChange={handleChange}
+          type="text"
+          value={form.contactNumber}
+        />
+        {errors.contactNumber ? (
+          <small className="field-error" id="error-organisation">
+            {errors.contactNumber}
+          </small>
+        ) : null}
+      </label>
+
+      <label className="field">
+        <span className="field__label">Email*</span>
         <input
           aria-describedby={errors.email ? "error-email" : undefined}
           aria-invalid={Boolean(errors.email)}
@@ -273,47 +296,7 @@ export function InquiryForm() {
       </label>
 
       <label className="field">
-        <span className="field__label">Contact Number</span>
-        <input
-          aria-describedby={errors.contactNumber ? "error-contact-number" : undefined}
-          aria-invalid={Boolean(errors.contactNumber)}
-          autoComplete="tel"
-          disabled={submitting}
-          maxLength={inquiryFieldLimits.contactNumber}
-          name="contactNumber"
-          onChange={handleChange}
-          type="tel"
-          value={form.contactNumber}
-        />
-        {errors.contactNumber ? (
-          <small className="field-error" id="error-contact-number">
-            {errors.contactNumber}
-          </small>
-        ) : null}
-      </label>
-
-      <label className="field">
-        <span className="field__label">Subject *</span>
-        <input
-          aria-describedby={errors.subject ? "error-subject" : undefined}
-          aria-invalid={Boolean(errors.subject)}
-          disabled={submitting}
-          maxLength={inquiryFieldLimits.subject}
-          name="subject"
-          onChange={handleChange}
-          required
-          type="text"
-          value={form.subject}
-        />
-        {errors.subject ? (
-          <small className="field-error" id="error-subject">
-            {errors.subject}
-          </small>
-        ) : null}
-      </label>
-
-      <label className="field">
-        <span className="field__label">Message *</span>
+        <span className="field__label">What are you trying to achieve?*</span>
         <textarea
           aria-describedby={errors.message ? "error-message" : undefined}
           aria-invalid={Boolean(errors.message)}
@@ -343,7 +326,7 @@ export function InquiryForm() {
           disabled={submitState.disabled}
           type="submit"
         >
-          {submitting ? "Sending securely…" : "Submit Form"}
+          {submitting ? "Sending securely…" : "Start a conversation →"}
         </button>
         <p className="field-hint">
           {getVerificationHint(

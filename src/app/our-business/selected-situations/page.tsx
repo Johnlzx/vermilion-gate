@@ -26,21 +26,20 @@ export default function SelectedSituationsPage() {
         <div className="container inner-page-grid">
           <article className="content-article">
             <section className="content-section situations-intro">
+              <p className="section-kicker">The work in practice</p>
               <h2 className="content-section__title">
                 The work is best understood through the decisions it changed.
               </h2>
               <div className="content-section__copy">
                 <p>
-                  These three situations are drawn from engagements undertaken
-                  through Vermilion Gate. Each begins with the constraint, then
-                  sets out the work performed and the resulting decision or
-                  structural change.
+                  These three anonymised situations show the constraint, the
+                  work undertaken and the resulting decision or structural
+                  change.
                 </p>
                 <p className="situations-disclosure">
-                  The examples are anonymised. Company names, jurisdictions,
-                  transaction figures and counterparties are omitted, and no
-                  merger, financing or project is described as completed where
-                  it was not.
+                  Company names, jurisdictions, transaction figures and
+                  counterparties are omitted. No transaction or financing is
+                  described as completed where it was not.
                 </p>
               </div>
             </section>

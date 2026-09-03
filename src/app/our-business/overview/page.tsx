@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { PageHero } from "@/components/page-hero";
+import { TypographicArrow } from "@/components/typographic-arrow";
 import { buildMetadata } from "@/lib/metadata";
 import {
   businessSelectedSituations,
@@ -84,7 +85,7 @@ export default function BusinessOverviewPage() {
               >
                 <span>Read the selected situations</span>
                 <span className="related-page-link__arrow" aria-hidden="true">
-                  ↗
+                  <TypographicArrow />
                 </span>
               </Link>
             </section>

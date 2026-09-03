@@ -35,8 +35,8 @@ export default function ContactPage() {
             </h2>
             <div className="content-section__copy">
               <p>
-                For more information about our services, please use the form
-                below and we will respond as soon as possible.
+                Tell us briefly what you are trying to achieve and where the
+                situation is stuck. We review each enquiry directly.
               </p>
             </div>
             <InquiryForm />

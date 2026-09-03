@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
-import { getInquiryFormSubmitState } from "./inquiry-form";
+import { getInquiryFormSubmitState, InquiryForm } from "./inquiry-form";
 
 describe("getInquiryFormSubmitState", () => {
   it("disables submission while sending", () => {
@@ -66,5 +68,19 @@ describe("getInquiryFormSubmitState", () => {
         waitingForVerification: false,
       },
     );
+  });
+});
+
+describe("InquiryForm", () => {
+  it("shows the simplified client-approved field set", () => {
+    const markup = renderToStaticMarkup(createElement(InquiryForm));
+
+    assert.match(markup, />Name\*<\/span>/);
+    assert.match(markup, />Organisation<\/span>/);
+    assert.match(markup, />Email\*<\/span>/);
+    assert.match(markup, />What are you trying to achieve\?\*<\/span>/);
+    assert.match(markup, />Start a conversation →<\/button>/);
+    assert.doesNotMatch(markup, />Contact Number<\/span>/);
+    assert.doesNotMatch(markup, />Subject \*<\/span>/);
   });
 });
