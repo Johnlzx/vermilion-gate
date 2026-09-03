@@ -67,16 +67,16 @@ describe("site metadata", () => {
 
   it("falls back to the page title when no separate social title is provided", () => {
     const metadata = buildMetadata({
-      title: "Illustrative themes",
+      title: "Selected Situations",
       description: "Example description",
-      path: "/our-business/illustrative-themes",
+      path: "/our-business/selected-situations",
     });
 
-    assert.equal(metadata.openGraph?.title, "Illustrative themes");
-    assert.equal(metadata.twitter?.title, "Illustrative themes");
+    assert.equal(metadata.openGraph?.title, "Selected Situations");
+    assert.equal(metadata.twitter?.title, "Selected Situations");
     assert.equal(
       metadata.alternates?.canonical,
-      "https://www.vermiliongate.com/our-business/illustrative-themes",
+      "https://www.vermiliongate.com/our-business/selected-situations",
     );
   });
 });

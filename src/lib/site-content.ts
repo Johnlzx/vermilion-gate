@@ -84,7 +84,7 @@ export const primaryNavigation: NavigationItem[] = [
   {
     href: "/our-business/overview",
     label: "Our Business",
-    match: ["/our-business/overview", "/our-business/illustrative-themes"],
+    match: ["/our-business/overview", "/our-business/selected-situations"],
     children: [
       {
         href: "/our-business/overview",
@@ -103,7 +103,11 @@ export const primaryNavigation: NavigationItem[] = [
         label: "Capital Allocation Strategy",
       },
       {
-        href: "/our-business/illustrative-themes",
+        href: "/our-business/overview#special-situations-and-strategic-realignment",
+        label: "Special Situations",
+      },
+      {
+        href: "/our-business/selected-situations",
         label: "Selected Situations",
       },
     ],
@@ -131,10 +135,10 @@ export const businessSidebar: SidebarLink[] = [
   { href: "#capital-alignment", label: "Capital alignment" },
   { href: "#capital-allocation-strategy", label: "Capital allocation strategy" },
   { href: "#special-situations-and-strategic-realignment", label: "Special situations" },
+  { href: "#selected-situations", label: "Selected situations" },
 ];
 
 export const situationsSidebar: SidebarLink[] = [
-  { href: "#institutional-context", label: "Institutional context" },
   { href: "#designing-the-business", label: "Designing the business" },
   { href: "#separating-project-risk", label: "Separating project risk" },
   { href: "#fundraising-around-evidence", label: "Fundraising around evidence" },
@@ -177,7 +181,7 @@ export const homeWhatThisMeans = {
 
 export const homeFounderLed = {
   heading: "Founder-led",
-  copy: "Vermilion Gate is led by Cheng-Guan Loo and built for situations where something important no longer fits — in capital structure, ownership, market positioning, or strategic direction.",
+  copy: "Vermilion Gate is led by Cheng-Guan Loo, CEO of RidgeField Capital and a board member of CastleReach. His work through Vermilion Gate spans more than a decade and focuses on situations where something important no longer fits — in capital structure, ownership, market positioning, or strategic direction.",
 };
 
 export const homeInsights = {
@@ -257,9 +261,6 @@ export const founder = {
   quote:
     "Not every situation needs more capital. Some need a different structure.",
 };
-
-export const institutionalContext =
-  "Current roles include CEO of RidgeField Capital and board member of CastleReach, alongside more than a decade of building and advising through Vermilion Gate.";
 
 export const founderExperience: FocusBlock[] = [
   {
@@ -353,6 +354,12 @@ export const whatWeDoSections: DetailBlock[] = [
     ],
   },
 ];
+
+export const businessSelectedSituations = {
+  kicker: "The work in practice",
+  heading: "Selected situations",
+  copy: "Three anonymised engagements show how Vermilion Gate's judgment changed an operating model, a project-risk structure, and a fundraising strategy before process or capital was allowed to run ahead of the evidence.",
+};
 
 export const selectedSituations: SituationBlock[] = [
   {

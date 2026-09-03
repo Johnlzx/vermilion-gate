@@ -4,8 +4,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import AboutOverviewPage from "@/app/about-us/overview/page";
 import Home from "@/app/page";
-import SelectedSituationsPage from "@/app/our-business/illustrative-themes/page";
 import BusinessOverviewPage from "@/app/our-business/overview/page";
+import SelectedSituationsPage from "@/app/our-business/selected-situations/page";
 
 function assertSingleH1(markup: string, text: string) {
   const headings = markup.match(/<h1\b[^>]*>.*?<\/h1>/g) ?? [];

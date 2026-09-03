@@ -1,16 +1,12 @@
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
-import {
-  institutionalContext,
-  selectedSituations,
-  situationsSidebar,
-} from "@/lib/site-content";
+import { selectedSituations, situationsSidebar } from "@/lib/site-content";
 
 export const metadata = buildMetadata({
   title: "Selected Situations",
   description:
     "Selected anonymised situations showing Vermilion Gate's judgment-led transaction and strategic advisory work.",
-  path: "/our-business/illustrative-themes",
+  path: "/our-business/selected-situations",
 });
 
 export default function SelectedSituationsPage() {
@@ -28,44 +24,25 @@ export default function SelectedSituationsPage() {
 
       <section className="classic-section">
         <div className="container inner-page-grid">
-          <article className="content-article situations-page">
-            <section
-              id="institutional-context"
-              className="institutional-proof"
-              aria-labelledby="institutional-context-title"
-            >
-              <p className="section-kicker">Institutional context</p>
-              <h2
-                id="institutional-context-title"
-                className="institutional-proof__title"
-              >
-                Experience behind the advice
-              </h2>
-              <p className="institutional-proof__copy">{institutionalContext}</p>
-            </section>
-
+          <article className="content-article">
             <section className="content-section situations-intro">
               <h2 className="content-section__title">
-                Judgment is most useful when it changes the decision, not merely
-                the process.
+                The work is best understood through the decisions it changed.
               </h2>
               <div className="content-section__copy">
                 <p>
-                  These situations are drawn from work undertaken through
-                  Vermilion Gate. They show how an initial constraint was
-                  tested, how the structure was changed, and what decision
-                  followed.
+                  These three situations are drawn from engagements undertaken
+                  through Vermilion Gate. Each begins with the constraint, then
+                  sets out the work performed and the resulting decision or
+                  structural change.
+                </p>
+                <p className="situations-disclosure">
+                  The examples are anonymised. Company names, jurisdictions,
+                  transaction figures and counterparties are omitted, and no
+                  merger, financing or project is described as completed where
+                  it was not.
                 </p>
               </div>
-              <aside className="anonymisation-note" aria-label="Anonymisation note">
-                <span className="anonymisation-note__label">Confidentiality</span>
-                <p>
-                  Company names, jurisdictions, transaction figures and
-                  counterparties have been omitted. No situation is presented
-                  as completed where the underlying merger, financing or
-                  project did not complete.
-                </p>
-              </aside>
             </section>
 
             {selectedSituations.map((item, index) => (
@@ -74,23 +51,25 @@ export default function SelectedSituationsPage() {
                 id={item.id}
                 className="content-section situation"
               >
-                <header className="situation__header">
-                  <p className="situation__number">
+                <header>
+                  <p className="section-kicker situation__number">
                     Situation {String(index + 1).padStart(2, "0")}
                   </p>
                   <h2 className="content-section__title">{item.title}</h2>
-                  <p className="situation__setting">{item.setting}</p>
                 </header>
-                <dl className="situation__sequence">
-                  <div className="situation__step">
+                <div className="content-section__copy situation__setting">
+                  <p>{item.setting}</p>
+                </div>
+                <dl className="detail-list situation__sequence">
+                  <div className="detail-list__item situation__step">
                     <dt>Initial constraint</dt>
                     <dd>{item.constraint}</dd>
                   </div>
-                  <div className="situation__step">
+                  <div className="detail-list__item situation__step">
                     <dt>Work performed</dt>
                     <dd>{item.work}</dd>
                   </div>
-                  <div className="situation__step">
+                  <div className="detail-list__item situation__step">
                     <dt>Resulting decision</dt>
                     <dd>{item.result}</dd>
                   </div>

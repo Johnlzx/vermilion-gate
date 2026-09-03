@@ -29,7 +29,8 @@ Confirm that:
 - `/about-us`, `/about-us/team-members` -> `/about-us/overview`
 - `/our-business` and `/our-business/service-focus` -> `/our-business/overview`
 - `/our-business/industry-focus` and `/our-business/transactions` ->
-  `/our-business/illustrative-themes`
+  `/our-business/selected-situations`
+- `/our-business/illustrative-themes` -> `/our-business/selected-situations`
 - `/news-room` -> `/insights`
 - `/contact-us` -> `/contact-us/our-office`
 - `/our-partners` returns `410`
@@ -43,7 +44,7 @@ Use the verified Domain property for `vermiliongate.com`.
 
 1. Submit `https://www.vermiliongate.com/sitemap.xml` in the Sitemaps report.
 2. Request indexing with URL Inspection for `/`, `/about-us/overview`,
-   `/our-business/overview`, `/our-business/illustrative-themes`, `/insights`,
+   `/our-business/overview`, `/our-business/selected-situations`, `/insights`,
    and `/contact-us/our-office`.
 3. Use Temporary Removals only for URLs that have no replacement and already
    return `404` or `410`, including `/our-partners`,
