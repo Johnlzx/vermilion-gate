@@ -13,7 +13,7 @@ const validForm = {
   ...initialInquiryFormState,
   name: "Jane Doe",
   email: "jane@example.com",
-  contactNumber: "+65 1234 5678",
+  contactNumber: "Example Industries",
   subject: "Strategic mandate",
   message: "We need help thinking through a cross-border ownership transition.",
 };
@@ -83,7 +83,7 @@ describe("buildInquiryEmailContent", () => {
       content.subject,
       "Strategic mandate — website inquiry from Jane <Doe>",
     );
-    assert.match(content.plainText, /Contact Number: \+65 1234 5678/);
+    assert.match(content.plainText, /Organisation: Example Industries/);
     assert.match(content.plainText, /Need a review of "special situations" <soon>\./);
     assert.match(content.html, /Jane &lt;Doe&gt;/);
     assert.match(content.html, /&quot;special situations&quot; &lt;soon&gt;/);

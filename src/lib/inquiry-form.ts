@@ -19,7 +19,7 @@ export const initialInquiryFormState: InquiryFormState = {
 export const inquiryFieldLimits = {
   name: 120,
   email: 254,
-  contactNumber: 50,
+  contactNumber: 160,
   subject: 200,
   message: 5_000,
 } as const satisfies Record<keyof InquiryFormState, number>;
@@ -78,7 +78,7 @@ export function validateInquiryForm(
   }
 
   if (nextForm.contactNumber.length > inquiryFieldLimits.contactNumber) {
-    nextErrors.contactNumber = `Please keep your contact number under ${inquiryFieldLimits.contactNumber} characters.`;
+    nextErrors.contactNumber = `Please keep your organisation under ${inquiryFieldLimits.contactNumber} characters.`;
   }
 
   if (!nextForm.subject) {
@@ -97,12 +97,12 @@ export function validateInquiryForm(
 }
 
 export function buildInquiryEmailContent(form: InquiryFormState) {
-  const contactNumber = form.contactNumber || "Not provided";
+  const organisation = form.contactNumber || "Not provided";
   const subject = `${form.subject} — website inquiry from ${form.name}`;
   const plainText = [
     `Name: ${form.name}`,
     `Email Address: ${form.email}`,
-    `Contact Number: ${contactNumber}`,
+    `Organisation: ${organisation}`,
     "",
     form.message,
   ].join("\n");
@@ -111,7 +111,7 @@ export function buildInquiryEmailContent(form: InquiryFormState) {
     <div style="font-family: Georgia, 'Times New Roman', serif; color: #1f2933; line-height: 1.7;">
       <p style="margin: 0 0 12px;"><strong>Name:</strong> ${escapeHtml(form.name)}</p>
       <p style="margin: 0 0 12px;"><strong>Email Address:</strong> <a href="mailto:${escapeHtml(form.email)}">${escapeHtml(form.email)}</a></p>
-      <p style="margin: 0 0 24px;"><strong>Contact Number:</strong> ${escapeHtml(contactNumber)}</p>
+      <p style="margin: 0 0 24px;"><strong>Organisation:</strong> ${escapeHtml(organisation)}</p>
       <p style="margin: 0;"><strong>Message</strong></p>
       <div style="margin-top: 12px; padding: 16px; background: #f7f3ee; border: 1px solid #d8cec1; white-space: pre-wrap;">${escapeHtml(form.message)}</div>
     </div>

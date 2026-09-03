@@ -174,14 +174,12 @@ export const homeWhatThisMeans = {
   copy: [
     "We focus on situations where structure matters more than story.",
     "The work is situation-defined, not sector-defined.",
-    "The first need is usually clarity, not process.",
-    "We only take on mandates where judgment, structural fit, and capital discipline materially shape the outcome.",
   ],
 };
 
 export const homeFounderLed = {
   heading: "Founder-led",
-  copy: "Vermilion Gate is led by Cheng-Guan Loo, CEO of RidgeField Capital and a board member of CastleReach. His work through Vermilion Gate spans more than a decade and focuses on situations where something important no longer fits — in capital structure, ownership, market positioning, or strategic direction.",
+  copy: "Vermilion Gate is led by Cheng-Guan Loo, CEO of RidgeField Capital and a board member of CastleReach. For more than a decade, his work through Vermilion Gate has focused on situations where something important no longer fits — in capital structure, ownership, market positioning, or strategic direction.",
 };
 
 export const homeInsights = {
@@ -204,8 +202,7 @@ export const homeInsights = {
 
 export const homeWhatWeAreNot = {
   heading: "What We Are Not",
-  title: "The platform is deliberately narrower than a generic advisory offering.",
-  copy: "The work is not built around broad coverage, process volume, or default corporate-finance positioning. It is designed for specific situations that require structural judgment first.",
+  copy: "Vermilion Gate is not built around pushing transactions or assets to market. We take on selected situations where judgement, structural fit and capital discipline can materially affect the outcome.",
 };
 
 export const howWeWork: FocusBlock[] = [
@@ -226,24 +223,6 @@ export const howWeWork: FocusBlock[] = [
     title: "Clarity before action",
     summary:
       "A cleaner decision before counterparties, documents, or capital compound the confusion.",
-  },
-];
-
-export const whatWeAreNot: FocusBlock[] = [
-  {
-    title: "Not a broker",
-    summary:
-      "The work is not built around pushing an asset or a process to market.",
-  },
-  {
-    title: "Not a general corporate finance shop",
-    summary:
-      "The platform is designed for specific, higher-judgment situations rather than broad execution volume.",
-  },
-  {
-    title: "Not a broad project-finance adviser",
-    summary:
-      "The focus is structural judgment, capital fit, and strategic realignment, not generic financing coverage.",
   },
 ];
 

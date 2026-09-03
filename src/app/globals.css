@@ -951,8 +951,19 @@ textarea {
 }
 
 .related-page-link__arrow {
-  display: inline-block;
+  display: inline-flex;
   transition: transform var(--transition);
+}
+
+.typographic-arrow {
+  display: block;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.35;
 }
 
 .related-page-link:hover .related-page-link__arrow {
@@ -965,6 +976,10 @@ textarea {
   border-left: 2px solid rgba(142, 59, 47, 0.38);
   font-size: 0.9rem;
   line-height: 1.72;
+}
+
+.situations-intro .content-section__title {
+  margin-top: 0.55rem;
 }
 
 .situation__number,
@@ -1726,6 +1741,11 @@ textarea:disabled {
   width: 1.25rem;
   height: 1.25rem;
   font-size: 0.95rem;
+  transition: transform var(--transition);
+}
+
+.ed-button:hover .ed-button__icon {
+  transform: translateX(2px);
 }
 
 .ed-link {
@@ -1985,7 +2005,13 @@ textarea:disabled {
 }
 
 .ed-channels__arrow {
-  font-size: 0.85rem;
+  display: inline-flex;
+  font-size: 0.9rem;
+  transition: transform var(--transition);
+}
+
+.ed-channels__link:hover .ed-channels__arrow {
+  transform: translate(1.5px, -1.5px);
 }
 
 .ed-channels__description {
