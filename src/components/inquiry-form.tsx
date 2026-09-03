@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { TypographicArrow } from "@/components/typographic-arrow";
 import {
   resetTurnstile,
   type TurnstileState,
@@ -326,7 +327,16 @@ export function InquiryForm() {
           disabled={submitState.disabled}
           type="submit"
         >
-          {submitting ? "Sending securely…" : "Start a conversation →"}
+          {submitting ? (
+            "Sending securely…"
+          ) : (
+            <>
+              <span>Start a conversation</span>
+              <span className="submit-button__icon" aria-hidden="true">
+                <TypographicArrow direction="right" />
+              </span>
+            </>
+          )}
         </button>
         <p className="field-hint">
           {getVerificationHint(

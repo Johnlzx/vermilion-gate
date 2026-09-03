@@ -177,10 +177,8 @@ export function HomeEditorial() {
           <header className="ed-section__head">
             <h2 className="ed-display">{homeWhatWeAreNot.heading}</h2>
           </header>
-          <div className="ed-section__body">
-            <p className="ed-prose ed-prose--statement">
-              {homeWhatWeAreNot.copy}
-            </p>
+          <div className="ed-section__body ed-prose ed-prose--statement">
+            <p>{homeWhatWeAreNot.copy}</p>
           </div>
         </div>
       </section>

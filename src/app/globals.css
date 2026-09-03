@@ -544,9 +544,24 @@ textarea {
 }
 
 .submit-button {
+  gap: 0.7rem;
   border: 1px solid var(--accent);
   background: var(--accent);
   color: var(--background);
+}
+
+.submit-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.95rem;
+  transition: transform var(--transition);
+}
+
+.submit-button:hover .submit-button__icon {
+  transform: translateX(2px);
 }
 
 .classic-section {
@@ -1257,6 +1272,10 @@ textarea:disabled {
   background: var(--surface-muted);
   color: var(--text-secondary);
   box-shadow: none;
+}
+
+.submit-button:disabled .submit-button__icon {
+  transform: none;
 }
 
 .legal-page {
