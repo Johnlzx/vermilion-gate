@@ -37,7 +37,7 @@ That file controls:
 - primary navigation
 - homepage hero, focus blocks, and positioning statements
 - about page narrative and founder section
-- what we do and illustrative themes content
+- what we do and selected situations content
 - insights links
 - office details and FAQ content
 
@@ -48,7 +48,7 @@ This keeps future updates reviewable and avoids pushing routine text changes thr
 - `/`: homepage with refreshed positioning
 - `/about-us/overview`: founder-led platform and Loo Cheng Guan profile
 - `/our-business/overview`: what we do
-- `/our-business/illustrative-themes`: theme-led replacement for legacy transaction pages
+- `/our-business/selected-situations`: anonymised, evidence-led examples of the advisory work
 - `/insights`: external links to LinkedIn and Substack
 - `/contact-us/our-office`: contact page
 

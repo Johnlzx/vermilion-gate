@@ -56,13 +56,23 @@ describe("legacy route contract", () => {
         status: 301,
       },
       {
+        source: "/our-business/illustrative-themes",
+        destination: "/our-business/selected-situations",
+        status: 301,
+      },
+      {
+        source: "/our-business/illustrative-themes/",
+        destination: "/our-business/selected-situations",
+        status: 301,
+      },
+      {
         source: "/our-business/industry-focus",
-        destination: "/our-business/illustrative-themes",
+        destination: "/our-business/selected-situations",
         status: 301,
       },
       {
         source: "/our-business/industry-focus/",
-        destination: "/our-business/illustrative-themes",
+        destination: "/our-business/selected-situations",
         status: 301,
       },
       {
@@ -77,12 +87,12 @@ describe("legacy route contract", () => {
       },
       {
         source: "/our-business/transactions",
-        destination: "/our-business/illustrative-themes",
+        destination: "/our-business/selected-situations",
         status: 301,
       },
       {
         source: "/our-business/transactions/",
-        destination: "/our-business/illustrative-themes",
+        destination: "/our-business/selected-situations",
         status: 301,
       },
       { source: "/news-room", destination: "/insights", status: 301 },

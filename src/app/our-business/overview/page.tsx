@@ -1,6 +1,12 @@
+import Link from "next/link";
+
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
-import { businessSidebar, whatWeDoSections } from "@/lib/site-content";
+import {
+  businessSelectedSituations,
+  businessSidebar,
+  whatWeDoSections,
+} from "@/lib/site-content";
 
 export const metadata = buildMetadata({
   title: "Strategic Advisory Services",
@@ -58,6 +64,30 @@ export default function BusinessOverviewPage() {
                 </ul>
               </section>
             ))}
+
+            <section
+              id="selected-situations"
+              className="content-section business-situations-bridge"
+            >
+              <p className="section-kicker">
+                {businessSelectedSituations.kicker}
+              </p>
+              <h2 className="content-section__title">
+                {businessSelectedSituations.heading}
+              </h2>
+              <div className="content-section__copy">
+                <p>{businessSelectedSituations.copy}</p>
+              </div>
+              <Link
+                className="related-page-link"
+                href="/our-business/selected-situations"
+              >
+                <span>Read the selected situations</span>
+                <span className="related-page-link__arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </Link>
+            </section>
           </article>
 
           <aside className="page-aside">

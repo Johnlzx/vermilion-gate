@@ -45,9 +45,9 @@ export const sitemapRoutes: RouteSpec[] = [
     changeFrequency: "monthly",
   },
   {
-    path: "/our-business/illustrative-themes",
+    path: "/our-business/selected-situations",
     deps: [
-      "src/app/our-business/illustrative-themes/page.tsx",
+      "src/app/our-business/selected-situations/page.tsx",
       "src/lib/site-content.ts",
     ],
     priority: 0.7,
